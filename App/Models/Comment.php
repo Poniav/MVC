@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domain;
+namespace App\Models;
 
+use Core\Domain\Model;
 use \DateTime;
 
 /**
@@ -9,7 +10,7 @@ use \DateTime;
  * Modèle de base Commentaires
  */
 
- class Comment extends \Core\Model
+ class Comment extends Model
  {
 
    private $id;

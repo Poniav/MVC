@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace Core\View;
 
 /**
  * View
@@ -16,14 +16,17 @@ class View
      *
      * @return void
      */
-    public static function render($view, $args = [])
+    public function render($view, $args = [])
     {
         extract($args, EXTR_SKIP);
 
         $file = "../App/Views/$view";
 
         if (is_readable($file)) {
+            ob_start();
             require $file;
+            $content = ob_get_contents();
+            return $content;
         } else {
             throw new \Exception("$file not found");
         }
@@ -35,7 +38,7 @@ class View
      * @param string $template  file
      * @param array $args  parametres
      */
-    public static function renderTemplate($template, $args = [])
+    public function renderTemplate($template, $args = [])
     {
         static $twig = null;
 

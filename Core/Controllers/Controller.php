@@ -1,6 +1,8 @@
 <?php
 
-namespace Core;
+namespace Core\Controllers;
+
+use Core\Application;
 
 /**
  * Base controller
@@ -8,18 +10,13 @@ namespace Core;
 abstract class Controller extends Application
 {
 
-    protected $route_params = [];
-
     /**
      * Class Construct
-     *
-     * @param array $route_params  Parameters from the route
      * @return void
      */
-    public function __construct($route_params)
+    public function __construct()
     {
         parent::__construct();
-        $this->route_params = $route_params;
     }
 
     /**
@@ -42,12 +39,4 @@ abstract class Controller extends Application
         }
     }
 
-
-    protected function before()
-    {
-    }
-
-    protected function after()
-    {
-    }
 }

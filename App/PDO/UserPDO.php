@@ -3,12 +3,13 @@
 namespace App\Membre;
 
 use Core\BDD;
+use Core\Domain\Manager;
 use PDO;
 
 /**
  * Global Manager Membre
  */
-class UserPDO extends \Core\Manager
+class UserPDO extends Manager
 {
 
  public function add(User $user)

@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace Core\Domain;
 
 /**
  * Base model
@@ -18,7 +18,7 @@ abstract class Model
     foreach ($donnees as $key => $value)
     {
       $method = 'set'.ucfirst($key);
-      
+
       if (method_exists($this, $method))
       {
         $this->$method($value);

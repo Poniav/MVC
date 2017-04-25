@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Core\Domain\Model;
 use \Exception;
 use \DateTime;
 
@@ -10,7 +11,7 @@ use \DateTime;
  * Global Model Membre
  */
 
-class User extends \Core\Model
+class User extends Model
 {
   private $erreurs = [];
   private $id;

@@ -2,18 +2,18 @@
 
 namespace App\Controllers;
 
-use Core\View;
+use Core\Controllers\Controller;
 
 /**
  * Login controller
  */
-class LoginController extends \Core\Controller
+class LoginController extends Controller
 {
-      public function indexAction()
-      {
+    public function indexAction()
+    {
 
 
-      View::renderTemplate('login.twig');
+      
     }
 
 

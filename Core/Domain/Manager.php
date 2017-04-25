@@ -1,13 +1,13 @@
 <?php
 
-namespace Core;
+namespace Core\Domain;
 
 use App\PDO\BDD;
 
 /**
  * Abstract Class Manager
  */
- 
+
 abstract class Manager
 {
 

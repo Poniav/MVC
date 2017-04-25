@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Core\Domain\Model;
 use \DateTime;
 
 /**
  * Class News
  * Global Model News
  */
-class Article extends \Core\Model
+class Article extends Model
 {
 
   private $erreurs = [];

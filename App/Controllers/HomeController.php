@@ -2,35 +2,38 @@
 
 namespace App\Controllers;
 
-use Core\View;
+use Core\Controllers\Controller;
 use App\PDO\ArticlePDO;
 use App\PDO\BDD;
 
 /**
  * Home controller
  */
-class HomeController extends \Core\Controller
+class HomeController extends Controller
 {
+
     public function indexAction()
     {
+
       $articlePDO = new ArticlePDO(new BDD);
       $articles = $articlePDO->getList();
 
-      View::renderTemplate('home.twig', [
+      return $this->app['view']->renderTemplate('home.twig', [
         'articles'    => $articles
       ]);
+
+      // $this->app['HTTPResponse']->redirect('/alert/2');
     }
 
-
-    protected function before()
+    public function before()
     {
-        //echo "(before) ";
-        //return false;
+
     }
 
-    protected function after()
+    public function after()
     {
-        //echo " (after)";
+
     }
+
 
 }

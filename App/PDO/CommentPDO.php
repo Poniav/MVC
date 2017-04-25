@@ -4,12 +4,13 @@ namespace App\PDO;
 
 use App\PDO\BDD;
 use App\Domain\Comment;
+use Core\Domain\Manager;
 use PDO;
 
 /**
  * Global Manager Membre
  */
-class CommentPDO extends \Core\Manager
+class CommentPDO extends Manager
 {
 
  public function add(Comment $comments)

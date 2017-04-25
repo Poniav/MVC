@@ -1,7 +1,7 @@
 <?php
-namespace Core;
+namespace Core\HTTP;
 
-class HTTPRequest extends ApplicationComponent
+class HTTPRequest
 
 {
   public function cookieData($key)

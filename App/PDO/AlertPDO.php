@@ -4,6 +4,7 @@ namespace App\PDO;
 
 use Core\PDO\BDD;
 use App\Domain\Alert;
+use Core\Domain\Manager;
 use PDO;
 
 /**

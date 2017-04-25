@@ -4,14 +4,16 @@
 
 {% block body %}
 
-    <h1>Welcome</h1>
-    <p>Hello from a Twig template, {{ name }}!</p>
+    <h1>Jean Forteroche</h1>
+    <p>Follow my story</p>
 
     <ul>
         {% for article in articles %}
-            <li>{{ article.id }}</li>
-            <li>{{ article.title }}</li>
-            <li>{{ article.content }}</li>
+            <h1>{{ article.title }}</h1>
+            <p>{{ article.content }}</p>
+            <footer>
+                  <a href="/article/{{ article.id }}">Voir la suite</a>
+            </footer>
         {% endfor %}
     </ul>
 

@@ -2,8 +2,9 @@
 
 namespace App\PDO;
 
-use Core\BDD;
+use App\PDO\BDD;
 use App\Models\Article;
+use Core\Domain\Manager;
 use DateTime;
 use PDO;
 
@@ -11,7 +12,7 @@ use PDO;
  * Class News Manager
  * Gestion des actualités du site internet
  */
-class ArticlePDO extends \Core\Manager
+class ArticlePDO extends Manager
 {
 
   public function add(Article $article)
@@ -34,7 +35,10 @@ class ArticlePDO extends \Core\Manager
     $query = $this->db->pdo->query('SELECT id, title, content, auteur, addDate, modDate FROM news WHERE id = '.$id);
     $donnees = $query->fetch(PDO::FETCH_ASSOC);
 
-    return new Article($donnees);
+    var_dump($donnees);
+    // return new Article($donnees);
+    var_dump(new Article($donnees));
+    die();
   }
 
   public function getList()
