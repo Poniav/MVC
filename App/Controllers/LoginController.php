@@ -9,18 +9,19 @@ use Core\Controllers\Controller;
  */
 class LoginController extends Controller
 {
-    public function indexAction()
-    {
-
-
-      
-    }
-
-
     protected function before()
     {
 
     }
+
+    public function indexAction()
+    {
+
+
+
+    }
+
+
 
     protected function after()
     {

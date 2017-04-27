@@ -18,7 +18,7 @@ class HomeController extends Controller
       $articlePDO = new ArticlePDO(new BDD);
       $articles = $articlePDO->getList();
 
-      return $this->app['view']->renderTemplate('home.twig', [
+      return $this->app['view']->render('Front/home.php', [
         'articles'    => $articles
       ]);
 

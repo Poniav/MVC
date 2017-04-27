@@ -19,5 +19,16 @@ class HTTPResponse
     exit;
   }
 
+  /**
+   * Set Flash
+   *
+   * @param type var Get flash message
+   */
+
+  public function addFlash($value)
+  {
+     $_SESSION['flash'] = $value;
+  }
+
 
 }

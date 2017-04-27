@@ -34,6 +34,11 @@ class HTTPRequest
     return isset($_POST[$key]) ? $_POST[$key] : null;
   }
 
+  public function allData()
+  {
+    return !empty($_POST) ? $_POST : null;
+  }
+
   public function postExists($key)
   {
     return isset($_POST[$key]);

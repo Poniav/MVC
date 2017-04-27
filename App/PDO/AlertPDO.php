@@ -3,7 +3,7 @@
 namespace App\PDO;
 
 use Core\PDO\BDD;
-use App\Domain\Alert;
+use App\Models\Alert;
 use Core\Domain\Manager;
 use PDO;
 
@@ -11,7 +11,7 @@ use PDO;
  * Class Alert Manager
  * Gestion des articles sur les commentaires
  */
-class AlertPDO extends \Core\Manager
+class AlertPDO extends Manager
 {
 
 

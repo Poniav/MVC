@@ -1,13 +1,11 @@
 <?php
 
 namespace Core\View;
-
 /**
  * View
  */
 class View
 {
-
     /**
      * Render a view file
      *
@@ -16,7 +14,7 @@ class View
      *
      * @return void
      */
-    public function render($view, $args = [])
+    public function render(string $view, $args = [])
     {
         extract($args, EXTR_SKIP);
 
@@ -30,24 +28,5 @@ class View
         } else {
             throw new \Exception("$file not found");
         }
-    }
-
-    /**
-     * Render template avec Twig
-     *
-     * @param string $template  file
-     * @param array $args  parametres
-     */
-    public function renderTemplate($template, $args = [])
-    {
-        static $twig = null;
-
-        if ($twig === null) {
-            $loader = new \Twig_Loader_Filesystem('../App/Views');
-            $twig = new \Twig_Environment($loader, array('debug' => true));
-            // $twig->addExtension(new Twig_Extension_Debug());
-        }
-
-        echo $twig->render($template, $args);
     }
 }

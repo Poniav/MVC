@@ -1,0 +1,35 @@
+body {
+  background: rgb(241, 242, 246);
+}
+
+header.header {
+  /*background-color: #272727;*/
+  background: url(/assets/img/bg.jpg) center 60%;
+  color: #fff;
+  padding-bottom: 15px;
+}
+
+header h1 {
+  margin-bottom: 7px;
+  font-size: 41px;
+}
+
+header h2 {
+  font-size: 21px;
+  font-weight: 100;
+  margin-top: 0px;
+  color: #929191;
+}
+
+.home h1, .article h1 {
+  font-size: 31px;
+  margin-top: 15px;
+}
+
+.article {
+  margin-top: 20px;
+}
+
+.breadcrumb-arrow {
+  margin-top: 20px;
+}

@@ -12,28 +12,28 @@ class Auth
 
   private $auth;
 
-  /**
-   * Set Flash
-   *
-   * @param type var Get flash message
-   */
-
-  public function addFlash($value)
+  public function getAttribute($attr)
   {
-     $_SESSION['flash'] = $value;
+    return isset($_SESSION[$attr]) ? $_SESSION[$attr] : null;
   }
 
-  /**
-   * Return Auth
-   *
-   * @param type var Get flash message
-   */
+  public function getFlash()
+  {
+    $flash = $_SESSION['flash'];
+    unset($_SESSION['flash']);
+
+    return $flash;
+  }
+
+  public function hasFlash()
+  {
+    return isset($_SESSION['flash']);
+  }
 
   public function isAuthenticated()
   {
-    return isset($_SESSION['auth']);
+    return isset($_SESSION['auth']) && $_SESSION['auth'] === true;
   }
-
 
 
 }

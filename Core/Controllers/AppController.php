@@ -3,6 +3,7 @@
 namespace Core\Controllers;
 
 use Core\Application;
+use Core\Form\Form;
 use \Exception;
 
 /**
@@ -41,7 +42,7 @@ class AppController extends Application
 
     }
 
-    return $this->app['view']->renderTemplate('404.twig');
+    return $this->app['view']->render('Error/404.php');
 
   }
 

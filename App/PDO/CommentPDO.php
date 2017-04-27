@@ -3,7 +3,7 @@
 namespace App\PDO;
 
 use App\PDO\BDD;
-use App\Domain\Comment;
+use App\Models\Comment;
 use Core\Domain\Manager;
 use PDO;
 

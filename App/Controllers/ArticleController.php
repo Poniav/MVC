@@ -3,10 +3,10 @@
 namespace App\Controllers;
 
 use App\Models\Article;
+use App\Models\Comment;
 use App\PDO\ArticlePDO;
 use App\PDO\CommentPDO;
 use App\PDO\BDD;
-use App\Models\Comment;
 use Core\Controllers\Controller;
 
 /**
@@ -23,10 +23,12 @@ class ArticleController extends Controller
       $articlePDO = new ArticlePDO(new BDD);
       $articles = $articlePDO->get($id);
 
+      var_dump($articles);
+
       $commentPDO = new CommentPDO(new BDD);
-      if($CommentPDO->count($id))
+      if($commentPDO->count($id))
       {
-        $comments = $CommentPDO->getAllComments($id);
+        $comments = $commentPDO->getAllComments($id);
       }
 
       $commentFormView = null;
@@ -38,9 +40,10 @@ class ArticleController extends Controller
 
 
 
-      return $this->app['view']->renderTemplate('article.twig', [
+      return $this->app['view']->render('Front/article.php', [
         'articles'    => $articles,
-        'comments'    => $comments
+        'comments'    => $comments,
+        'auth' => $this->app['auth']
       ]);
     }
 
