@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 set_error_handler('Core\Exception\Error::errorHandler');
 set_exception_handler('Core\Exception\Error::exceptionHandler');
 
-$app = new Core\Controllers\AppController;
+$app = new Core\Application;
 
 require __DIR__."/../App/Routes.php";
 

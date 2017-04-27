@@ -2,21 +2,30 @@
 
 namespace Core\Controllers;
 
-use Core\Application;
+
 
 /**
  * Base controller
  */
-abstract class Controller extends Application
+abstract class Controller
 {
 
     /**
-     * Class Construct
-     * @return void
+     * Application Object
+     *
+     * @var array
      */
-    public function __construct()
+    protected $app;
+
+    /**
+     * Construct get $this->app Application
+     *
+     * @param type array
+     */
+
+    public function __construct(array $app)
     {
-        parent::__construct();
+      $this->app = $app;
     }
 
     /**
