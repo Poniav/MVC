@@ -40,19 +40,4 @@ abstract class Application extends ApplicationProvider
 
   }
 
-  public function HTTPRequest()
-  {
-    return $this->httpRequest;
-  }
-
-  public function HTTPResponse()
-  {
-    return $this->httpResponse;
-  }
-
-  public function Auth()
-  {
-    return $this->auth;
-  }
-
 }

@@ -16,6 +16,11 @@ use Exception;
  */
 class ArticleController extends Controller
 {
+    /**
+     * Method Article
+     *
+     * @return return view
+     */
 
     public function articleAction()
     {
@@ -24,7 +29,7 @@ class ArticleController extends Controller
 
       $articles = $this->getArticles($id);
       $comments = $this->getComments($id);
-      $commentPDO = new commentPDO(new BDD);
+      $commentPDO = new CommentPDO(new BDD);
 
       $niveau = 0;
 
@@ -49,9 +54,6 @@ class ArticleController extends Controller
 
           $comment = new Comment($this->app['HTTPRequest']->allData());
           $comment->setNiveau($niveau);
-          echo "<pre>";
-          print_r($comment);
-          echo "</pre>";
 
           $commentPDO->add($comment);
           $this->app['HTTPResponse']->addFlash('Votre commentaire a bien été ajouté');
@@ -105,6 +107,17 @@ class ArticleController extends Controller
       }
 
       return $comments;
+
+    }
+
+    /**
+     * Set Title for Article
+     *
+     * @return return string title for Article
+     */
+
+    private function metaData()
+    {
 
     }
 

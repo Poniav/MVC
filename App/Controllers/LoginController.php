@@ -11,9 +11,9 @@ class LoginController extends Controller
 {
     protected function before()
     {
-      // if(!$this->app['Auth']->isAuthenticated()){
-      //     $this->app['HTTPResponse']->redirect('/admin/home');
-      // }
+      if($this->app['auth']->isAuthenticated()){
+          $this->app['HTTPResponse']->redirect('/admin/home');
+      }
 
     }
 

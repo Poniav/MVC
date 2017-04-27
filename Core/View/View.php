@@ -21,10 +21,7 @@ class View
         $file = "../App/Views/$view";
 
         if (is_readable($file)) {
-            ob_start();
             require $file;
-            $content = ob_get_contents();
-            return $content;
         } else {
             throw new \Exception("$file not found");
         }

@@ -2,26 +2,28 @@
 
 namespace App\Controllers\Admin;
 
-use Core;
+use Core\Controllers\Controller;
 
 /**
  * Admin Controller
  */
-class AdminController extends \Core\Controller
+class AdminController extends Controller
 {
 
     public function before()
     {
-        if($this->Auth()->isAuthenticated()){
+        var_dump($_SESSION);
+        if($this->app['auth']->isAuthenticated())
+        {
           return true;
-        } else {
-          $this->Auth()->addFlash('Vous devez être identifié !');
-          $this->HTTPResponse()->redirect('http://localhost:8000/login');
         }
+
+        $this->app['HTTPResponse']->addFlash('Vous devez être connecté');
+        $this->app['HTTPResponse']->redirect('/login');
     }
 
 
-    public function indexAction(HTTPRequest $HTTPRequest)
+    public function indexAction()
     {
 
           // var_dump($this->HTTPRequest()->method());
@@ -34,6 +36,11 @@ class AdminController extends \Core\Controller
           // var_dump($this->HTTPRequest()->method());
           echo 'User admin index';
     }
+
+    protected function after()
+    {
+    }
+
 
 
 }
