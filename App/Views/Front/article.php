@@ -5,13 +5,13 @@
       <div class="row">
       <ol class="breadcrumb breadcrumb-arrow">
                   <li><a href="/"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                  <li class="active"><span><i class="glyphicon glyphicon-calendar"></i><?php echo htmlspecialchars($articles->title()); ?></span></li>
+                  <li class="active"><span><?php echo htmlspecialchars($articles->title()); ?></span></li>
       </ol>
       <section class="article">
             <article class="well">
               <header>
                 <h1><?php echo htmlspecialchars($articles->title()); ?></h1>
-                <p>by Jean Forteroche | {{ articles.addDate|date("d/m/Y", "Europe/Paris")  }} | {{ articles.addDate|date('h:i:s')  }}</p>
+                <p>by Jean Forteroche | <?php echo $articles->addDate()->format('d/m/Y'); ?> | <?php echo $articles->addDate()->format('H:i:s'); ?></p>
               </header>
               <p><?php echo $articles->content(); ?></p>
             </article>
@@ -30,21 +30,34 @@
           <p>Aucun commentaire n'a été posté. Soyez le premier à donner votre avis.</p>
       </div>
     <?php endif; ?>
-    <!-- {% if comments is defined %}
-        {% for comment in comments %}
-          {% include 'Front/_comments.twig' %}
-        {% endfor %}
-        {% else %}
-        <div class="alert alert-info" role="alert">
-            <p>Aucun commentaire n'a été posté. Soyez le premier à donner votre avis.</p>
-        </div>
-    {% endif %}
-    </div> -->
 
-    <!-- <form action="#" method="post" id="form-comment">
-            <h4 class="headcom">Ajouter un commentaire</h3>
-            <input type="hidden" name="idparent" value="0" id="idparent">
- -->
+        <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title">Ajouter un commentaire</h3>
+              </div>
+              <div class="panel-body">
+                <?php if($auth->hasFlash()) : ?>
+                  <div class="alert alert-success alert-dismissable">
+                    <?php echo $auth->getFlash(); ?>
+                  </div>
+                <?php endif; ?>
+                <form action="#" method="post" id="form-comment">
+                        <input type="hidden" name="idparent" value="0" id="idparent">
+                        <input type="hidden" name="idNews" value="<?php echo $articles->id(); ?>" id="idNews">
+                        <div class="form-group">
+                          <label>Membre</label>
+                          <input type="text" class="form-control" name="membre" id="membre" placeholder="Veuillez saisir un pseudo" required>
+                        </div>
+                        <div class="form-group">
+                          <label>Ajouter un commentaire :</label>
+                          <textarea class="form-control" name="content" id="content" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-success">Envoyer</button>
+                        </div>
+                </form>
+              </div>
+            </div>
 
   </div>
 

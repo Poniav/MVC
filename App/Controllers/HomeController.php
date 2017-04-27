@@ -22,7 +22,6 @@ class HomeController extends Controller
         'articles'    => $articles
       ]);
 
-      // $this->app['HTTPResponse']->redirect('/alert/2');
     }
 
     public function before()

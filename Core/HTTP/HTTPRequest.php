@@ -29,9 +29,14 @@ class HTTPRequest
     return $_SERVER['REQUEST_METHOD'];
   }
 
+  // public function postData($key)
+  // {
+  //   return isset($_POST[$key]) ? $_POST[$key] : null;
+  // }
+
   public function postData($key)
   {
-    return isset($_POST[$key]) ? $_POST[$key] : null;
+    return isset($_POST[$key]) ? $_POST[$key] : 0;
   }
 
   public function allData()

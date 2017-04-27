@@ -7,7 +7,9 @@ use App\Models\Comment;
 use App\PDO\ArticlePDO;
 use App\PDO\CommentPDO;
 use App\PDO\BDD;
+use Core\Form\Form;
 use Core\Controllers\Controller;
+use Exception;
 
 /**
  * Article controller
@@ -20,24 +22,41 @@ class ArticleController extends Controller
 
       $id = intval($this->app['route']->getParams()['id']);
 
-      $articlePDO = new ArticlePDO(new BDD);
-      $articles = $articlePDO->get($id);
+      $articles = $this->getArticles($id);
+      $comments = $this->getComments($id);
+      $commentPDO = new commentPDO(new BDD);
 
-      var_dump($articles);
-
-      $commentPDO = new CommentPDO(new BDD);
-      if($commentPDO->count($id))
-      {
-        $comments = $commentPDO->getAllComments($id);
-      }
-
-      $commentFormView = null;
       $niveau = 0;
 
-      $comment = new Comment([
-            'idNews' => $id
-      ]);
+      $form = new Form();
 
+      if($this->app['HTTPRequest']->method() == 'POST' && $form->isValid())
+      {
+
+        $idParent = $this->app['HTTPRequest']->postData('idparent');
+
+        if($idParent != 0){
+
+          $commentId = $commentPDO->getId($idParent);
+
+          if($commentId == false){
+            throw new Exception("Le commentaire n'existe pas !");
+          }
+
+          $niveau = $commentId->niveau() + 1;
+        }
+
+
+          $comment = new Comment($this->app['HTTPRequest']->allData());
+          $comment->setNiveau($niveau);
+          echo "<pre>";
+          print_r($comment);
+          echo "</pre>";
+
+          $commentPDO->add($comment);
+          $this->app['HTTPResponse']->addFlash('Votre commentaire a bien été ajouté');
+          $this->app['HTTPResponse']->redirect('/article/'.$id);
+      }
 
 
       return $this->app['view']->render('Front/article.php', [
@@ -47,8 +66,45 @@ class ArticleController extends Controller
       ]);
     }
 
-    private function articles()
+    /**
+     * Get specified article
+     *
+     * @param type int id article
+     * @return return array articles
+     */
+
+    private function getArticles(int $id)
     {
+
+      $articlePDO = new ArticlePDO(new BDD);
+      $articles = $articlePDO->get($id);
+
+      if(is_bool($articles))
+      {
+        $this->app['HTTPResponse']->addHeader('HTTP/1.0 404 Not Found');
+        $this->app['HTTPResponse']->redirect('/404');
+      }
+
+      return $articles;
+    }
+
+    /**
+     * Get comments from article
+     *
+     * @param type int id article
+     * @return return array comments
+     */
+
+    private function getComments(int $id)
+    {
+
+      $commentPDO = new CommentPDO(new BDD);
+      if($commentPDO->count($id))
+      {
+        $comments = $commentPDO->getAllComments($id);
+      }
+
+      return $comments;
 
     }
 

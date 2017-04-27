@@ -11,6 +11,9 @@ class LoginController extends Controller
 {
     protected function before()
     {
+      // if(!$this->app['Auth']->isAuthenticated()){
+      //     $this->app['HTTPResponse']->redirect('/admin/home');
+      // }
 
     }
 
@@ -18,6 +21,7 @@ class LoginController extends Controller
     {
 
 
+      return $this->app['view']->render('Front/login.php');
 
     }
 

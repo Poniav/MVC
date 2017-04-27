@@ -34,8 +34,10 @@ class ArticlePDO extends Manager
   {
     $query = $this->db->pdo->query('SELECT id, title, content, auteur, addDate, modDate FROM news WHERE id = '.$id);
     $donnees = $query->fetch(PDO::FETCH_ASSOC);
-
-    return new Article($donnees);
+    if(!is_bool($donnees)){
+      return new Article($donnees);
+    }
+    return false;
   }
 
   public function getList()
