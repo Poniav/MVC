@@ -15,7 +15,7 @@ class Auth
    * @return condition flash message
    */
 
-  public function getAttribute($attr)
+  public function getAttribute(string $attr)
   {
     return isset($_SESSION[$attr]) ? $_SESSION[$attr] : null;
   }
@@ -46,14 +46,35 @@ class Auth
   }
 
   /**
-   * If flash message exist
+   * Set Auth authorization true
    *
-   * @return condition flash message
    */
 
   public function setAuth()
   {
       $_SESSION['auth'] = true;
+  }
+
+  /**
+   * Set Auth username in Session
+   * @param string username Auth
+   */
+
+  public function setAuthUser(string $username)
+  {
+      $_SESSION['authUser'] = $username;
+  }
+
+  /**
+   * Destroy Session Logout
+   *
+   */
+
+  public function destroySession()
+  {
+      unset($_SESSION['auth']);
+      unset($_SESSION['authUser']);
+      session_destroy();
   }
 
   /**

@@ -33,3 +33,9 @@ header h2 {
 .breadcrumb-arrow {
   margin-top: 20px;
 }
+
+/* Admin */
+
+.navbar {
+  border-radius: 0px;
+}

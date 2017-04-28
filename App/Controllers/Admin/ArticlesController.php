@@ -5,9 +5,10 @@ namespace App\Controllers\Admin;
 use Core\Controllers\Controller;
 
 /**
- * Admin Controller
+ * Admin Articles Controller
  */
-class AdminController extends Controller
+ 
+class ArticlesController extends Controller
 {
 
     public function before()
@@ -25,19 +26,11 @@ class AdminController extends Controller
     public function indexAction()
     {
 
-      return $this->app['view']->render('Admin/home.php', [
+      return $this->app['view']->render('Admin/articles.php', [
               'auth' => $this->app['auth']
       ]);
     }
 
-    public function logoutAction()
-    {
-
-      $this->app['auth']->destroySession();
-      $this->app['HTTPResponse']->addFlash('Vous êtes déconnecté.');
-      $this->app['HTTPResponse']->redirect('/login');
-
-    }
 
     protected function after()
     {

@@ -20,10 +20,10 @@ class View
 
         $file = "../App/Views/$view";
 
-        if (is_readable($file)) {
-            require $file;
-        } else {
+        if (!is_readable($file)) {
             throw new \Exception("$file not found");
         }
+
+        require $file;
     }
 }

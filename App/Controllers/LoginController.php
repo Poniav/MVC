@@ -15,7 +15,7 @@ class LoginController extends Controller
 {
     protected function before()
     {
-      
+
       if($this->app['auth']->isAuthenticated()){
           $this->app['HTTPResponse']->redirect('/admin/home');
       }
@@ -39,6 +39,7 @@ class LoginController extends Controller
         }
 
         $this->app['auth']->setAuth();
+        $this->app['auth']->setAuthUser($username);
         $this->app['HTTPResponse']->redirect('/admin/home');
 
       }
