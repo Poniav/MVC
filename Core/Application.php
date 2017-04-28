@@ -60,8 +60,6 @@ class Application extends ApplicationProvider
 
     /**
      * Get Controller
-     *
-     * @return return view 404
      */
 
     $this->getController($controller, $this->app);
@@ -98,8 +96,7 @@ class Application extends ApplicationProvider
   /**
    * Verif namespace exist in Params
    *
-   * @param type string controller
-   * @return return function
+   * @return return string namespace
    */
 
   protected function namespace()

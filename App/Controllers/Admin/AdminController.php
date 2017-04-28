@@ -12,14 +12,13 @@ class AdminController extends Controller
 
     public function before()
     {
-        var_dump($_SESSION);
-        if($this->app['auth']->isAuthenticated())
+
+        if(!$this->app['auth']->isAuthenticated())
         {
-          return true;
+          $this->app['HTTPResponse']->addFlash('Vous devez être connecté');
+          $this->app['HTTPResponse']->redirect('/login');
         }
 
-        $this->app['HTTPResponse']->addFlash('Vous devez être connecté');
-        $this->app['HTTPResponse']->redirect('/login');
     }
 
 

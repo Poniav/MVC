@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Membre;
+namespace App\PDO;
 
-use Core\BDD;
+use App\PDO\BDD;
+use App\Models\User;
 use Core\Domain\Manager;
 use PDO;
 
@@ -77,15 +78,44 @@ class UserPDO extends Manager
  * @return array
  */
 
- public function select(array $params)
+ public function selectUser(string $username)
  {
-   if($params['username']) {
+
      $query = $this->db->pdo->prepare('SELECT * FROM membre WHERE username = :username');
      $query->execute(['username' => $username]);
 
-     return $query->fetch();
-   }
+     $data = $query->fetch(PDO::FETCH_ASSOC);
+
+     if(!$data){
+       return false;
+     }
+
+     return new User($data);
+
  }
+
+/**
+ * Selectionner un utilisateur en fonction des paramètres
+ *
+ * @param type array @params
+ * @return array
+ */
+
+ // public function selectUser(string $username)
+ // {
+ //
+ //     $query = $this->db->pdo->prepare('SELECT * FROM membre WHERE username = :username');
+ //     $query->execute(['username' => $username]);
+ //
+ //     $data = $query->fetch(PDO::FETCH_ASSOC);
+ //
+ //     if(!$data)
+ //     {
+ //       return false;
+ //     }
+ //
+ //     return new User($data);
+ // }
 
  /**
   * @param instance class BDD
