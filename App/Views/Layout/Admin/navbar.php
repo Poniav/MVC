@@ -4,11 +4,11 @@
       <a class="navbar-brand" href="/admin/home">Administration</a>
     </div>
     <ul class="nav navbar-nav">
-      <li <?php if($_SERVER['SCRIPT_NAME'] == '/index.php') { echo 'class="active"'; } ?> ><a href="/admin/home">Accueil</a></li>
-      <li <?php if($_SERVER['SCRIPT_NAME'] == '/membres.php') { echo 'class="active"'; } ?> ><a href="/admin/users">Membres</a></li>
-      <li <?php if($_SERVER['SCRIPT_NAME'] == '/articles.php') { echo 'class="active"'; } ?> ><a href="/admin/articles">Articles</a></li>
-      <li <?php if($_SERVER['SCRIPT_NAME'] == '/commentaires.php') { echo 'class="active"'; } ?> ><a href="/admin/comments">Commentaires</a></li>
-      <li <?php if($_SERVER['SCRIPT_NAME'] == '/signalements.php') { echo 'class="active"'; } ?> ><a href="/admin/alerts">Signalements</a></li>
+      <li <?php echo $auth->navbarURI('home'); ?> ><a href="/admin/home">Accueil</a></li>
+      <li <?php echo $auth->navbarURI('users'); ?> ><a href="/admin/users">Utilisateurs</a></li>
+      <li <?php echo $auth->navbarURI('articles'); ?> ><a href="/admin/articles">Articles</a></li>
+      <li <?php echo $auth->navbarURI('comments'); ?> ><a href="/admin/comments">Commentaires</a></li>
+      <li <?php echo $auth->navbarURI('alerts'); ?> ><a href="/admin/alerts">Signalements</a></li>
     </ul>
     <a href="/"><button type="button" class="btn btn-danger navbar-btn">Retour au site</button></a>
     <ul class="nav navbar-nav navbar-right">

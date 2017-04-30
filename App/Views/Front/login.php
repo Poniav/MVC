@@ -3,10 +3,17 @@
   <div class="container">
     <section class="login">
       <h3>Identification</h3>
-        <?php if($auth->hasFlash()) : ?>
-          <div class="alert alert-warning alert-dismissable">
-            <?php echo $auth->getFlash(); ?>
+        <?php if($auth->hasFlash('flash-warning')) : ?>
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <?php echo $auth->getFlash('flash-warning'); ?>
           </div>
+        <?php endif; ?>
+        <?php if($auth->hasFlash('flash-error')) : ?>
+            <div class="alert alert-danger">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <?php echo $auth->getFlash('flash-error'); ?>
+            </div>
         <?php endif; ?>
         <form class="" action="#" method="post">
             <div class="form-group">

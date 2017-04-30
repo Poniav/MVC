@@ -20,14 +20,14 @@ class HTTPResponse
   }
 
   /**
-   * Set Flash
+   * Set Flash success
    *
    * @param type var Get flash message
    */
 
-  public function addFlash($value)
+  public function addFlash(string $key, string $value)
   {
-     $_SESSION['flash'] = $value;
+     $_SESSION[$key] = $value;
   }
 
 

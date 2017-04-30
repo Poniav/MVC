@@ -39,3 +39,11 @@ header h2 {
 .navbar {
   border-radius: 0px;
 }
+
+.table>tbody>tr>td {
+  vertical-align: inherit;
+}
+
+section.users .panel-title, section.articles .panel-title {
+    line-height: 2.4;
+}

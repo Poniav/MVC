@@ -16,7 +16,7 @@ class LoginController extends Controller
     protected function before()
     {
 
-      if($this->app['auth']->isAuthenticated()){
+      if($this->app['auth']->isAuth()){
           $this->app['HTTPResponse']->redirect('/admin/home');
       }
 
@@ -34,7 +34,7 @@ class LoginController extends Controller
 
         if(!$this->validUser($username, $password))
         {
-          $this->app['HTTPResponse']->addFlash('La combinaison identifiant et mot de passe est incorrect. Veuillez réessayer.');
+          $this->app['HTTPResponse']->addFlash('flash-error', 'La combinaison identifiant et mot de passe est incorrect. Veuillez réessayer.');
           $this->app['HTTPResponse']->redirect('/login');
         }
 

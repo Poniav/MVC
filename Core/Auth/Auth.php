@@ -21,15 +21,26 @@ class Auth
   }
 
   /**
+   * If flash message exist
+   *
+   * @return condition flash message
+   */
+
+  public function navbarURI(string $attr)
+  {
+    return (stripos($_SERVER['REQUEST_URI'], $attr) !== false) ? 'class="active"' : null;
+  }
+
+  /**
    * Get Flash message
    *
    * @return return flash message
    */
 
-  public function getFlash()
+  public function getFlash(string $key)
   {
-    $flash = $_SESSION['flash'];
-    unset($_SESSION['flash']);
+    $flash = $_SESSION[$key];
+    unset($_SESSION[$key]);
 
     return $flash;
   }
@@ -40,9 +51,9 @@ class Auth
    * @return condition flash message
    */
 
-  public function hasFlash()
+  public function hasFlash(string $key)
   {
-    return isset($_SESSION['flash']);
+    return isset($_SESSION[$key]);
   }
 
   /**
@@ -74,7 +85,6 @@ class Auth
   {
       unset($_SESSION['auth']);
       unset($_SESSION['authUser']);
-      session_destroy();
   }
 
   /**
@@ -83,7 +93,7 @@ class Auth
    * @return condition flash message
    */
 
-  public function isAuthenticated()
+  public function isAuth()
   {
     return isset($_SESSION['auth']) && $_SESSION['auth'] === true;
   }

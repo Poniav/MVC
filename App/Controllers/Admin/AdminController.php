@@ -13,9 +13,9 @@ class AdminController extends Controller
     public function before()
     {
 
-        if(!$this->app['auth']->isAuthenticated())
+        if(!$this->app['auth']->isAuth())
         {
-          $this->app['HTTPResponse']->addFlash('Vous devez être connecté');
+          $this->app['HTTPResponse']->addFlash('flash-warning', 'Vous devez être connecté');
           $this->app['HTTPResponse']->redirect('/login');
         }
 
@@ -34,7 +34,7 @@ class AdminController extends Controller
     {
 
       $this->app['auth']->destroySession();
-      $this->app['HTTPResponse']->addFlash('Vous êtes déconnecté.');
+      $this->app['HTTPResponse']->addFlash('flash-warning', 'Vous êtes déconnecté.');
       $this->app['HTTPResponse']->redirect('/login');
 
     }
