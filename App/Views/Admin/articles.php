@@ -5,6 +5,17 @@
 
   <div class="container">
     <section class="articles">
+      <?php if($auth->hasFlash('flash-success')) : ?>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <?php echo $auth->getFlash('flash-success'); ?>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+      <?php endif; ?>
       <div class="panel panel-default">
           <div class="panel-heading">
               <div class="col-md-10">
@@ -33,7 +44,7 @@
                     <tr>
                       <td><?php echo $article->id(); ?></td>
                       <td><?php echo htmlspecialchars($article->title()); ?></td>
-                      <td><?php echo htmlspecialchars(substr($article->content(), 0, 45)) . '...'; ?></td>
+                      <td><?php echo htmlspecialchars(strip_tags(substr($article->content(), 0, 60))) . '...'; ?></td>
                       <td><?php echo htmlspecialchars($article->auteur()); ?></td>
                       <td><?php echo $article->addDate()->format('d/m/Y à H:i:s'); ?></td>
                       <td><?php echo $article->modDate()->format('d/m/Y à H:i:s'); ?></td>

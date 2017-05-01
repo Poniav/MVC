@@ -87,6 +87,17 @@ class CommentPDO extends Manager
    return new Comment($donnees);
  }
 
+ public function getByArticle(int $idNews)
+ {
+   $query = $this->db->pdo->prepare('SELECT * FROM comments WHERE idNews =' . $idNews);
+   $query->execute(['idNews' => $idNews]);
+
+   $data = $query->fetchAll(PDO::FETCH_ASSOC);
+
+   var_dump(new Comment($data));
+  //  return $commentaires;
+ }
+
  public function getList()
  {
    $comments = [];
@@ -104,7 +115,7 @@ class CommentPDO extends Manager
 
  public function delete(Comment $comments)
  {
-   $this->db->pdo->exec('DELETE FROM comments WHERE id = '. $comments->id());
+   $this->db->pdo->exec('DELETE FROM comments WHERE idnews = '. $comments->idNews());
  }
 
 

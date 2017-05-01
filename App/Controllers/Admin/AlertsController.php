@@ -37,6 +37,20 @@ class AlertsController extends Controller
       ]);
     }
 
+    public function deleteAction()
+    {
+
+      $id = intval($this->app['route']->getParams()['id']);
+
+      $alertPDO = new AlertPDO(new BDD);
+      $alert = $alertPDO->getId($id);
+      $alertPDO->delete($alert);
+
+      $this->app['HTTPResponse']->addFlash('flash-success','L\'alerte a bien été supprimée.');
+      $this->app['HTTPResponse']->redirect('/admin/alerts');
+
+    }
+
 
     protected function after()
     {

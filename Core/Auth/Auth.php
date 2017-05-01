@@ -21,7 +21,7 @@ class Auth
   }
 
   /**
-   * If flash message exist
+   * Navbar URI request URI exist
    *
    * @return condition flash message
    */
@@ -29,6 +29,17 @@ class Auth
   public function navbarURI(string $attr)
   {
     return (stripos($_SERVER['REQUEST_URI'], $attr) !== false) ? 'class="active"' : null;
+  }
+
+  /**
+   * If flash message exist
+   *
+   * @return condition flash message
+   */
+
+  public function urlURI(string $attr)
+  {
+    return ($_SERVER['REQUEST_URI'] == $attr);
   }
 
   /**

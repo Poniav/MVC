@@ -2,9 +2,9 @@
 
 require_once __DIR__."/../vendor/autoload.php";
 
-error_reporting(E_ALL);
-set_error_handler('Core\Exception\Error::errorHandler');
-set_exception_handler('Core\Exception\Error::exceptionHandler');
+// error_reporting(E_ALL);
+// set_error_handler('Core\Exception\Error::errorHandler');
+// set_exception_handler('Core\Exception\Error::exceptionHandler');
 
 $app = new Core\Application;
 

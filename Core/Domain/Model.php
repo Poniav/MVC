@@ -8,7 +8,7 @@ namespace Core\Domain;
 abstract class Model
 {
 
-  public function __construct(array $donnees)
+  public function __construct($donnees)
   {
       $this->hydrate($donnees);
   }

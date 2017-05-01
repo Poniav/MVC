@@ -5,6 +5,9 @@ namespace App\Controllers\Admin;
 use Core\Controllers\Controller;
 use App\PDO\BDD;
 use App\PDO\ArticlePDO;
+use App\Models\Article;
+use App\PDO\CommentPDO;
+use Core\Form\Form;
 
 /**
  * Admin Articles Controller
@@ -34,6 +37,91 @@ class ArticlesController extends Controller
       return $this->app['view']->render('Admin/articles.php', [
               'auth' => $this->app['auth'],
               'articles' => $articles
+      ]);
+    }
+
+    public function deleteAction()
+    {
+
+      $id = intval($this->app['route']->getParams()['id']);
+
+      $articlePDO = new ArticlePDO(new BDD);
+      $commentPDO = new CommentPDO(new BDD);
+
+
+      $article = $articlePDO->get($id);
+      $articlePDO->delete($article);
+
+      $comments = $commentPDO->getByArticle($id);
+      if($comments)
+      {
+        $commentPDO->delete($comments);
+      }
+
+      $this->app['HTTPResponse']->addFlash('flash-success','L\'article et les commentaires ont bien été supprimés');
+      $this->app['HTTPResponse']->redirect('/admin/articles');
+
+
+    }
+
+    public function add()
+    {
+      $form = new Form;
+
+      if($this->app['HTTPRequest']->method() == 'POST' && $form->isValid())
+      {
+          if(!$this->app['HTTPRequest']->postData('content'))
+          {
+            $this->app['HTTPResponse']->addFlash('flash-error','Vous devez remplir tous les champs pour ajouter un article');
+          }
+
+          $articlePDO = new ArticlePDO(new BDD);
+          $article = new Article($this->app['HTTPRequest']->allData());
+          $articlePDO->add($article);
+          // var_dump($this->app['HTTPRequest']->allData());
+
+          $this->app['HTTPResponse']->addFlash('flash-success','L\'article a bien été ajouté');
+          $this->app['HTTPResponse']->redirect('/admin/articles');
+      }
+
+
+      return $this->app['view']->render('Admin/add/article.php', [
+              'auth' => $this->app['auth']
+      ]);
+    }
+
+
+    public function edit()
+    {
+      $id = intval($this->app['route']->getParams()['id']);
+
+      $articlePDO = new ArticlePDO(new BDD);
+      $article = $articlePDO->get($id);
+
+      $form = new Form;
+
+      if($this->app['HTTPRequest']->method() == 'POST' && $form->isValid())
+      {
+
+        if($article->title() != $this->app['HTTPRequest']->postData('title'))
+        {
+          $article->setTitle($this->app['HTTPRequest']->postData('title'));
+        }
+
+        if($article->content() != $this->app['HTTPRequest']->postData('content'))
+        {
+          $article->setContent($this->app['HTTPRequest']->postData('content'));
+        }
+
+        $articlePDO->update($article);
+
+        $this->app['HTTPResponse']->addFlash('flash-success','L\'article a bien été mis à jour.');
+
+      }
+
+      return $this->app['view']->render('Admin/edit/article.php', [
+              'auth' => $this->app['auth'],
+              'article' => $article
       ]);
     }
 

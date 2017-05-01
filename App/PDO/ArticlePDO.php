@@ -34,9 +34,11 @@ class ArticlePDO extends Manager
   {
     $query = $this->db->pdo->query('SELECT id, title, content, auteur, addDate, modDate FROM news WHERE id = '.$id);
     $donnees = $query->fetch(PDO::FETCH_ASSOC);
+
     if(!is_bool($donnees)){
       return new Article($donnees);
     }
+
     return false;
   }
 
@@ -54,18 +56,17 @@ class ArticlePDO extends Manager
     return $article;
   }
 
-  public function delete(Article $news)
+  public function delete(Article $article)
   {
     $this->db->pdo->exec('DELETE FROM news WHERE id = '. $article->id());
   }
 
   public function update(Article $article)
   {
-    $query = $this->db->pdo->prepare('UPDATE news SET title = :title, content = :content, auteur = :auteur, modDate = NOW() WHERE id = :id');
+    $query = $this->db->pdo->prepare('UPDATE news SET title = :title, content = :content, modDate = NOW() WHERE id = :id');
     $query->bindValue(':id', $article->id(), PDO::PARAM_INT);
     $query->bindValue(':title', $article->title(), PDO::PARAM_STR);
     $query->bindValue(':content', $article->content(), PDO::PARAM_STR);
-    $query->bindValue(':auteur', $article->auteur(), PDO::PARAM_STR);
 
     $query->execute();
   }
