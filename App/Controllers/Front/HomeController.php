@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Front;
 
 use Core\Controllers\Controller;
 use App\PDO\ArticlePDO;

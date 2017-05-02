@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use Core\Controllers\Controller;
 use App\PDO\BDD;
 use App\PDO\AlertPDO;
+use App\Models\Alert;
 
 /**
  * Admin Alerts Controller
@@ -47,6 +48,22 @@ class AlertsController extends Controller
       $alertPDO->delete($alert);
 
       $this->app['HTTPResponse']->addFlash('flash-success','L\'alerte a bien été supprimée.');
+      $this->app['HTTPResponse']->redirect('/admin/alerts');
+
+    }
+
+
+    public function deleteAllAction()
+    {
+
+      $alertPDO = new AlertPDO(new BDD);
+      $alerts = $alertPDO->getList();
+      
+      foreach ($alerts as $alert) {
+        $alertPDO->delete($alert);
+      }
+
+      $this->app['HTTPResponse']->addFlash('flash-success','Toutes les alertes ont bien été supprimés.');
       $this->app['HTTPResponse']->redirect('/admin/alerts');
 
     }

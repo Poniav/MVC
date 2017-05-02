@@ -17,6 +17,7 @@ $app['route']->add('/admin/users', ['controller' => 'UsersController', 'action' 
 $app['route']->add('/admin/user/{id:\d+}/del', ['controller' => 'UsersController', 'action' => 'delete', 'namespace' => 'Admin']);
 $app['route']->add('/admin/alerts', ['controller' => 'AlertsController', 'action' => 'index', 'namespace' => 'Admin']);
 $app['route']->add('/admin/alert/{id:\d+}/del', ['controller' => 'AlertsController', 'action' => 'delete', 'namespace' => 'Admin']);
+$app['route']->add('/admin/alerts/del', ['controller' => 'AlertsController', 'action' => 'deleteAll', 'namespace' => 'Admin']);
 
 
 

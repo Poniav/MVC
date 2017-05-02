@@ -55,7 +55,7 @@ class Application extends ApplicationProvider
 
     if(!class_exists($controller))
     {
-      throw new Exception("Controller do not exist in " . get_class($controller));
+      throw new Exception("Controller do not exist");
     }
 
     /**
@@ -107,6 +107,11 @@ class Application extends ApplicationProvider
     if($this->keyArray('namespace'))
     {
       $namespace = $namespace . $this->app['route']->getParams()['namespace'] . "\\";
+    }
+
+    if(!$this->keyArray('namespace'))
+    {
+      $namespace = $namespace . "Front\\";
     }
 
     return $namespace;

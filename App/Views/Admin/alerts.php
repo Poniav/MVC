@@ -4,7 +4,7 @@
 <?php include_once(__DIR__.'/../Layout/Admin/navbar.php'); ?>
 
   <div class="container">
-    <section class="comments">
+    <section class="alerts">
       <?php if($auth->hasFlash('flash-success')) : ?>
           <div class="col-md-12">
             <div class="row">
@@ -17,9 +17,15 @@
           <div class="clearfix"></div>
       <?php endif; ?>
       <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="panel-heading">
+            <div class="col-md-10">
               <h3 class="panel-title">Alertes</h3>
             </div>
+            <div class="col-md-2">
+              <a href="/admin/alerts/del"><button type="button" class="btn btn-block">Tous supprimer</button></a>
+            </div>
+              <div class="clearfix"></div>
+        </div>
         <div class="well">
           <table class="table">
                 <thead>

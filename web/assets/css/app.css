@@ -44,6 +44,6 @@ header h2 {
   vertical-align: inherit;
 }
 
-section.users .panel-title, section.articles .panel-title {
+section.users .panel-title, section.articles .panel-title, section.alerts .panel-title {
     line-height: 2.4;
 }
