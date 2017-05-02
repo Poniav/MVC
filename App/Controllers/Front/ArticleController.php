@@ -54,9 +54,10 @@ class ArticleController extends Controller
 
           $comment = new Comment($this->app['HTTPRequest']->allData());
           $comment->setNiveau($niveau);
+          $comment->setModerate(0);
 
           $commentPDO->add($comment);
-          $this->app['HTTPResponse']->addFlash('Votre commentaire a bien été ajouté');
+          $this->app['HTTPResponse']->addFlash('flash-success', 'Votre commentaire a bien été ajouté');
           $this->app['HTTPResponse']->redirect('/article/'.$id);
       }
 
@@ -101,11 +102,12 @@ class ArticleController extends Controller
     {
 
       $commentPDO = new CommentPDO(new BDD);
-      if($commentPDO->count($id))
+      if(!$commentPDO->count($id))
       {
-        $comments = $commentPDO->getAllComments($id);
+        return false;
       }
 
+      $comments = $commentPDO->getAllComments($id);
       return $comments;
 
     }

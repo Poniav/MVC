@@ -54,8 +54,11 @@
                 </div>
 
                 <div class="form-group">
-                  <div class="col-md-2">
+                  <div class="col-md-2 pull-right">
                     <button type="submit" class="btn btn-warning btn-block">Ajouter</button>
+                  </div>
+                  <div class="col-md-2 pull-right">
+                    <button type="reset" class="btn btn-default btn-block">Annuler</button>
                   </div>
                   <div class="clearfix"></div>
                 </div>

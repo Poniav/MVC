@@ -17,6 +17,7 @@ use \DateTime;
    private $idNews;
    private $idParent;
    private $niveau;
+   private $moderate;
    private $content;
    private $membre;
    private $addDate;
@@ -41,6 +42,11 @@ use \DateTime;
      $this->niveau = $niveau;
    }
 
+   public function setModerate(int $moderate)
+   {
+     $this->moderate = $moderate;
+   }
+
    public function setContent(string $content)
    {
      $this->content = $content;
@@ -60,6 +66,7 @@ use \DateTime;
    public function idNews() { return $this->idNews; }
    public function idParent() { return $this->idParent; }
    public function niveau() { return $this->niveau; }
+   public function moderate() { return $this->moderate; }
    public function content() { return $this->content; }
    public function membre() { return $this->membre; }
    public function addDate() { return $this->addDate; }

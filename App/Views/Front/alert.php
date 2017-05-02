@@ -10,9 +10,9 @@
           <div class="modal-dialog2">
             <div class="modal-content">
               <div class="modal-header">
-                <?php if($auth->hasFlash()) : ?>
+                <?php if($auth->hasFlash('flash-success')) : ?>
                   <div class="alert alert-success alert-dismissable">
-                    <?php echo $auth->getFlash(); ?>
+                    <?php echo $auth->getFlash('flash-success'); ?>
                   </div>
                 <?php endif; ?>
                 <p>Vous souhaitez signaler un commentaire qui vous semble enfreindre les règles du blog.</p>

@@ -37,6 +37,41 @@ class CommentsController extends Controller
       ]);
     }
 
+    public function moderateAction()
+    {
+
+      $id = intval($this->app['route']->getParams()['id']);
+
+      $commentPDO = new CommentPDO(new BDD);
+      $comment = $commentPDO->getId($id);
+
+      if($comment->moderate() == 0)
+      {
+        $comment->setModerate(1);
+        $this->app['HTTPResponse']->addFlash('flash-success', 'Vous avez modéré le commentaire.');
+      }
+      else {
+        $comment->setModerate(0);
+        $this->app['HTTPResponse']->addFlash('flash-success', 'Le commentaire n\'est plus modéré.');
+      }
+
+      $commentPDO->update($comment);
+      $this->app['HTTPResponse']->redirect('/admin/comments');
+
+    }
+
+    public function pagesAction()
+    {
+
+      $commentPDO = new CommentPDO(new BDD);
+      $comments = $commentPDO->getList();
+
+      return $this->app['view']->render('Admin/comments.php', [
+              'auth' => $this->app['auth'],
+              'comments' => $comments
+      ]);
+    }
+
 
     protected function after()
     {

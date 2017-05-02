@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="form-group">
-                  <div class="col-md-2">
+                  <div class="col-md-2 pull-right">
                     <button type="submit" class="btn btn-warning btn-block">Modifier</button>
                   </div>
                   <div class="clearfix"></div>

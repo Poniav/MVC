@@ -13,6 +13,8 @@ $app['route']->add('/admin/article/{id:\d+}/del', ['controller' => 'ArticlesCont
 $app['route']->add('/admin/article/{id:\d+}/edit', ['controller' => 'ArticlesController', 'action' => 'edit', 'namespace' => 'Admin']);
 $app['route']->add('/admin/article/add', ['controller' => 'ArticlesController', 'action' => 'add', 'namespace' => 'Admin']);
 $app['route']->add('/admin/comments', ['controller' => 'CommentsController', 'action' => 'index', 'namespace' => 'Admin']);
+$app['route']->add('/admin/comment/{id:\d+}/mod', ['controller' => 'CommentsController', 'action' => 'moderate', 'namespace' => 'Admin']);
+$app['route']->add('/admin/comments/{id:\d+}', ['controller' => 'CommentsController', 'action' => 'pages', 'namespace' => 'Admin']);
 $app['route']->add('/admin/users', ['controller' => 'UsersController', 'action' => 'index', 'namespace' => 'Admin']);
 $app['route']->add('/admin/user/{id:\d+}/del', ['controller' => 'UsersController', 'action' => 'delete', 'namespace' => 'Admin']);
 $app['route']->add('/admin/alerts', ['controller' => 'AlertsController', 'action' => 'index', 'namespace' => 'Admin']);

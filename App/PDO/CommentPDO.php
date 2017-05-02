@@ -15,10 +15,11 @@ class CommentPDO extends Manager
 
  public function add(Comment $comments)
  {
-   $query = $this->db->pdo->prepare('INSERT INTO comments(idnews, idparent, niveau, content, membre, addDate) VALUES (:idnews, :idparent, :niveau, :content, :membre, NOW())');
+   $query = $this->db->pdo->prepare('INSERT INTO comments(idnews, idparent, niveau, moderate, content, membre, addDate) VALUES (:idnews, :idparent, :niveau, :moderate, :content, :membre, NOW())');
    $query->bindValue(':idnews', $comments->idnews(), PDO::PARAM_INT);
    $query->bindValue(':idparent', $comments->idparent(), PDO::PARAM_INT);
    $query->bindValue(':niveau', $comments->niveau(), PDO::PARAM_INT);
+   $query->bindValue(':moderate', $comments->moderate(), PDO::PARAM_INT);
    $query->bindValue(':content', $comments->content(), PDO::PARAM_STR);
    $query->bindValue(':membre', $comments->membre(), PDO::PARAM_STR);
 
@@ -38,7 +39,7 @@ class CommentPDO extends Manager
  {
    $comments = [];
 
-   $query = $this->db->pdo->prepare('SELECT id, idnews, idparent, content, membre, addDate FROM comments WHERE idnews = :idnews');
+   $query = $this->db->pdo->prepare('SELECT id, idnews, idparent, niveau, moderate, content, membre, addDate FROM comments WHERE idnews = :idnews');
    $query->execute(['idnews' => $idNews]);
 
    while ($donnees = $query->fetch(PDO::FETCH_ASSOC))
@@ -54,7 +55,7 @@ class CommentPDO extends Manager
  {
    $comments = [];
 
-   $query = $this->db->pdo->prepare('SELECT id, idnews, idparent, niveau, content, membre, addDate FROM comments WHERE idnews = :idnews');
+   $query = $this->db->pdo->prepare('SELECT id, idnews, idparent, niveau, moderate, content, membre, addDate FROM comments WHERE idnews = :idnews');
    $query->execute(['idnews' => $idNews]);
 
    while ($data = $query->fetch(PDO::FETCH_ASSOC))
@@ -79,7 +80,7 @@ class CommentPDO extends Manager
 
  public function getId(int $id)
  {
-   $query = $this->db->pdo->prepare('SELECT id, idnews, idparent, niveau, content, membre, addDate FROM comments WHERE id =' . $id);
+   $query = $this->db->pdo->prepare('SELECT id, idnews, idparent, niveau, moderate, content, membre, addDate FROM comments WHERE id =' . $id);
    $query->execute(['id' => $id]);
 
    $donnees = $query->fetch(PDO::FETCH_ASSOC);
@@ -102,7 +103,7 @@ class CommentPDO extends Manager
  {
    $comments = [];
 
-   $query = $this->db->pdo->query('SELECT id, idnews, idparent, niveau, content, membre, addDate FROM comments ORDER BY id DESC');
+   $query = $this->db->pdo->query('SELECT id, idnews, idparent, niveau, moderate, content, membre, addDate FROM comments ORDER BY id DESC');
 
    while ($donnees = $query->fetch(PDO::FETCH_ASSOC))
    {
@@ -116,6 +117,15 @@ class CommentPDO extends Manager
  public function delete(Comment $comments)
  {
    $this->db->pdo->exec('DELETE FROM comments WHERE idnews = '. $comments->idNews());
+ }
+
+ public function update(Comment $comment)
+ {
+   $query = $this->db->pdo->prepare('UPDATE comments SET moderate = :moderate WHERE id = :id');
+   $query->bindValue(':id', $comment->id(), PDO::PARAM_INT);
+   $query->bindValue(':moderate', $comment->moderate(), PDO::PARAM_INT);
+
+   $query->execute();
  }
 
 

@@ -21,7 +21,7 @@
 
     <div class="col-md-10">
     <h3>Commentaires</h1>
-    <?php if(isset($comments)) : ?>
+    <?php if($comments) : ?>
       <?php foreach ($comments as $comment): ?>
           <?php include(__DIR__.'/../Front/_comments.php'); ?>
       <?php endforeach; ?>
@@ -36,9 +36,9 @@
                 <h3 class="panel-title">Ajouter un commentaire</h3>
               </div>
               <div class="panel-body">
-                <?php if($auth->hasFlash()) : ?>
+                <?php if($auth->hasFlash('flash-success')) : ?>
                   <div class="alert alert-success alert-dismissable">
-                    <?php echo $auth->getFlash(); ?>
+                    <?php echo $auth->getFlash('flash-success'); ?>
                   </div>
                 <?php endif; ?>
                 <form action="#" method="post" id="form-comment">

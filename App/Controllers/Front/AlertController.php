@@ -24,7 +24,7 @@ class AlertController extends Controller
           $alert = new Alert($this->app['HTTPRequest']->allData());
           $alertPDO = new AlertPDO(new BDD);
           $alertPDO->add($alert);
-          $this->app['HTTPResponse']->addFlash('Votre signalement a bien été pris en compte.');
+          $this->app['HTTPResponse']->addFlash('flash-success', 'Votre signalement a bien été pris en compte.');
       }
 
       return $this->app['view']->render('Front/alert.php', [
