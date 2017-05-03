@@ -20,8 +20,6 @@ class User extends Model
   private $name;
   private $firstname;
   private $email;
-  private $banned;
-  private $permission;
   private $addDate;
 
   public function setId(int $id)
@@ -31,10 +29,6 @@ class User extends Model
 
   public function setUsername(string $username)
   {
-    if(empty($username))
-    {
-      $this->erreurs['username'] = "Veuillez saisir un nom d'utilisateur";
-    }
 
     if(!empty($username) && strlen($username) < 3 || strlen($username) > 22)
     {
@@ -47,10 +41,6 @@ class User extends Model
 
   public function setPassword(string $password)
   {
-    if(empty($password))
-    {
-      $this->erreurs['password'] = "Veuillez saisir un mot de passe";
-    }
 
     if(!empty($password) && strlen($password) < 6)
     {
@@ -84,31 +74,12 @@ class User extends Model
 
   public function setEmail(string $email)
   {
-    if(empty($email))
-    {
-      $this->erreurs['email'] = "Veuillez saisir une adresse email.";
-    }
 
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
       $this->erreurs['email'] = "Veuillez saisir une adresse email valide.";
     }
 
     $this->email = $email;
-  }
-
-  public function setBanned(int $banned)
-  {
-    if(empty($banned))
-    {
-      $this->banned = 0;
-    }
-
-    $this->banned = $banned;
-  }
-
-  public function setPermission(string $permission)
-  {
-    $this->permission = $permission;
   }
 
   public function setAddDate(string $addDate)
@@ -123,8 +94,6 @@ class User extends Model
   public function name() { return $this->name; }
   public function firstname() { return $this->firstname; }
   public function email() { return $this->email; }
-  public function banned() { return $this->banned; }
-  public function permission() { return $this->permission; }
   public function addDate() { return $this->addDate; }
 
 

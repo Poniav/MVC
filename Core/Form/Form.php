@@ -14,4 +14,9 @@ class Form
     if(!empty($_POST)) { return true; }
   }
 
+  public function getValue(string $value)
+  {
+    return isset($_POST[$value]) ? $_POST[$value] : null;
+  }
+
 }
