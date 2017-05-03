@@ -66,3 +66,7 @@ section.users .panel-title, section.articles .panel-title, section.alerts .panel
   text-align: left;
   vertical-align: middle;
 }
+
+section.home a:hover i.fa.fa-user, section.home a:hover i.fa.fa-file, section.home a:hover i.fa.fa-comment, section.home a:hover i.fa.fa-bell {
+    color: #b2b4b7!important;
+}

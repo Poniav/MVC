@@ -8,7 +8,7 @@
       <li <?php echo $auth->navbarURI('users'); ?> ><a href="/admin/users">Utilisateurs</a></li>
       <li <?php echo $auth->navbarURI('articles'); ?> ><a href="/admin/articles">Articles</a></li>
       <li <?php echo $auth->navbarURI('comments'); ?> ><a href="/admin/comments">Commentaires</a></li>
-      <li <?php echo $auth->navbarURI('alerts'); ?> ><a href="/admin/alerts">Signalements</a></li>
+      <li <?php echo $auth->navbarURI('alerts'); ?> ><a href="/admin/alerts">Alertes</a></li>
     </ul>
     <a href="/"><button type="button" class="btn btn-danger navbar-btn">Retour au site</button></a>
     <ul class="nav navbar-nav navbar-right">
