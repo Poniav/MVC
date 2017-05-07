@@ -44,7 +44,7 @@
                     <tr>
                       <td><?php echo $article->id(); ?></td>
                       <td><?php echo htmlspecialchars($article->title()); ?></td>
-                      <td><?php echo htmlspecialchars(strip_tags(substr($article->content(), 0, 60))) . '...'; ?></td>
+                      <td><?php echo htmlspecialchars($article->resume()) . '...'; ?></td>
                       <td><?php echo htmlspecialchars($article->auteur()); ?></td>
                       <td><?php echo $article->addDate()->format('d/m/Y à H:i:s'); ?></td>
                       <td><?php echo $article->modDate()->format('d/m/Y à H:i:s'); ?></td>

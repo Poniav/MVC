@@ -1,9 +1,8 @@
 <?php
 
-$app['route']->setConfig($_SERVER['HTTP_HOST']);
-
 // Route Front
 $app['route']->add('/', ['controller' => 'HomeController', 'action' => 'index']);
+$app['route']->add('/articles/{id:\d+}', ['controller' => 'HomeController', 'articles' => 'index']);
 $app['route']->add('/article/{id:\d+}', ['controller' => 'ArticleController', 'action' => 'article']);
 $app['route']->add('/alert/{id:\d+}', ['controller' => 'AlertController', 'action' => 'index']);
 $app['route']->add('/login', ['controller' => 'LoginController', 'action' => 'index']);

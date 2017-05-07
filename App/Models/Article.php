@@ -75,7 +75,10 @@ class Article extends Model
   public function erreurs() { return $this->erreurs; }
   public function id() { return $this->id; }
   public function title() { return $this->title; }
+  public function metaTitle() { return substr($this->title, 0, 50) . ' | Jean Forteroche'; }
+  public function metaDescription() { return strip_tags(substr($this->content, 0, 180)). '...'; }
   public function content() { return $this->content; }
+  public function resume() { return strip_tags(substr($this->content(), 0, 300)); }
   public function auteur() { return $this->auteur; }
   public function addDate() { return $this->addDate; }
   public function modDate() { return $this->modDate; }

@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Front;
 
-use Core\Controllers\Controller;
+use Core\Controller\Controller;
 use Core\Form\Form;
 use App\Models\User;
 use App\PDO\UserPDO;
@@ -16,7 +16,8 @@ class LoginController extends Controller
     protected function before()
     {
 
-      if($this->app['auth']->isAuth()){
+      if($this->app['auth']->isAuth())
+      {
           $this->app['HTTPResponse']->redirect('/admin/home');
       }
 
@@ -27,7 +28,7 @@ class LoginController extends Controller
 
       $form = new Form;
 
-      if($this->app['HTTPRequest']->method() == 'POST' && $form->isValid())
+      if($this->app['HTTPRequest']->methodPost() && $form->isValid())
       {
 
         extract($this->app['HTTPRequest']->allData());
@@ -74,11 +75,6 @@ class LoginController extends Controller
         }
 
         return true;
-    }
-
-    protected function after()
-    {
-
     }
 
 }

@@ -8,27 +8,30 @@ namespace Core\HTTP;
 class HTTPResponse
 {
 
-  public function addHeader(string $header)
-  {
-    header($header);
-  }
-
-  public function redirect(string $location)
-  {
-    header('Location: '.$location);
-    exit;
-  }
-
   /**
-   * Set Flash success
+   * Redirect Location header
    *
-   * @param type var Get flash message
+   * @param type var string $location
+   * @return return header redirection
    */
 
-  public function addFlash(string $key, string $value)
-  {
-     $_SESSION[$key] = $value;
-  }
+    public function redirect(string $location)
+    {
+      header('Location: '.$location);
+      exit;
+    }
+
+  /**
+   * Add Flash Session with $key and $value
+   *
+   * @param type var string $key
+   * @param type var string $value
+   */
+
+    public function addFlash(string $key, string $value)
+    {
+       $_SESSION[$key] = $value;
+    }
 
 
 }

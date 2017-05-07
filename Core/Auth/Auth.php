@@ -10,9 +10,10 @@ class Auth
 {
 
   /**
-   * If flash message exist
+   * If attribute exist in Session
    *
-   * @return condition flash message
+   * @param string attr
+   * @return string session attribute
    */
 
   public function getAttribute(string $attr)
@@ -23,7 +24,7 @@ class Auth
   /**
    * Navbar URI request URI exist
    *
-   * @return condition flash message
+   * @return string class active
    */
 
   public function navbarURI(string $attr)
@@ -32,9 +33,10 @@ class Auth
   }
 
   /**
-   * If flash message exist
+   * String Attr is equal to Request URI
    *
-   * @return condition flash message
+   * @param string attr URL
+   * @return condition
    */
 
   public function urlURI(string $attr)
@@ -57,9 +59,9 @@ class Auth
   }
 
   /**
-   * If flash message exist
+   * Verif if flash message exist
    *
-   * @return condition flash message
+   * @return isset key exist
    */
 
   public function hasFlash(string $key)
@@ -99,9 +101,9 @@ class Auth
   }
 
   /**
-   * If flash message exist
+   * If Auth exist and true
    *
-   * @return condition flash message
+   * @return condition auth exist
    */
 
   public function isAuth()

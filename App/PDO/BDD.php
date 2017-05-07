@@ -3,11 +3,6 @@
 namespace App\PDO;
 
 use App\Config;
-
-/**
- * Class PDO
- * Utilisation de la Class PDO PHP
- */
 use PDO;
 
 /**

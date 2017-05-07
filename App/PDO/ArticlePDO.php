@@ -10,14 +10,20 @@ use PDO;
 
 /**
  * Class News Manager
- * Gestion des actualités du site internet
+ * Gestion des actualités de l'Application
  */
 class ArticlePDO extends Manager
 {
 
+  /**
+   * Add Article into BDD
+   *
+   * @param type class Article Object
+   */
+
   public function add(Article $article)
   {
-    $query = $this->db->pdo->prepare('INSERT INTO news (title, content, auteur, addDate, modDate) VALUES (:title, :content, :auteur, NOW(), NOW())');
+    $query = $this->db->pdo->prepare('INSERT INTO articles (title, content, auteur, addDate, modDate) VALUES (:title, :content, :auteur, NOW(), NOW())');
     $query->bindValue(':title', $article->title(), PDO::PARAM_STR);
     $query->bindValue(':content', $article->content(), PDO::PARAM_STR);
     $query->bindValue(':auteur', $article->auteur(), PDO::PARAM_STR);
@@ -25,28 +31,33 @@ class ArticlePDO extends Manager
     $query->execute();
   }
 
-  public function count()
-  {
-    return $this->db->pdo->query('SELECT COUNT(*) FROM news')->fetchColumn();
-  }
+  /**
+   * Get Article from BDD
+   *
+   * @return type class Article Object
+   */
 
   public function get(int $id)
   {
-    $query = $this->db->pdo->query('SELECT id, title, content, auteur, addDate, modDate FROM news WHERE id = '.$id);
+
+    $query = $this->db->pdo->query('SELECT id, title, content, auteur, addDate, modDate FROM articles WHERE id = '.$id);
     $donnees = $query->fetch(PDO::FETCH_ASSOC);
 
-    if(!is_bool($donnees)){
-      return new Article($donnees);
-    }
+    return new Article($donnees);
 
-    return false;
   }
 
-  public function getList()
+  /**
+   * Get all Articles from BDD
+   *
+   * @return type array Article Object
+   */
+
+  public function getArticles()
   {
     $article = [];
 
-    $query = $this->db->pdo->query('SELECT id, title, content, auteur, addDate, modDate FROM news ORDER BY id DESC');
+    $query = $this->db->pdo->query('SELECT id, title, content, auteur, addDate, modDate FROM articles ORDER BY id DESC');
 
     while ($donnees = $query->fetch(PDO::FETCH_ASSOC))
     {
@@ -56,14 +67,26 @@ class ArticlePDO extends Manager
     return $article;
   }
 
+  /**
+   * Delete Article into BDD
+   *
+   * @param type class Article Object
+   */
+
   public function delete(Article $article)
   {
-    $this->db->pdo->exec('DELETE FROM news WHERE id = '. $article->id());
+    $this->db->pdo->exec('DELETE FROM articles WHERE id = '. $article->id());
   }
+
+  /**
+   * Update Article into BDD
+   *
+   * @param type class Article Object
+   */
 
   public function update(Article $article)
   {
-    $query = $this->db->pdo->prepare('UPDATE news SET title = :title, content = :content, modDate = NOW() WHERE id = :id');
+    $query = $this->db->pdo->prepare('UPDATE articles SET title = :title, content = :content, modDate = NOW() WHERE id = :id');
     $query->bindValue(':id', $article->id(), PDO::PARAM_INT);
     $query->bindValue(':title', $article->title(), PDO::PARAM_STR);
     $query->bindValue(':content', $article->content(), PDO::PARAM_STR);

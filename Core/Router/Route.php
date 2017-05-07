@@ -8,9 +8,6 @@ namespace Core\Router;
 abstract class Route
 {
 
-  protected static $_instance = null;
-
-
   /**
    * Route
    * @var string
@@ -29,27 +26,6 @@ abstract class Route
    * @var array
    */
   protected $url;
-
-  /**
-   * URL
-   * @var array
-   */
-  protected $config;
-
-  /**
-   * Singleton Instance Route
-   * @return return self instance
-   */
-
-  public static function getInstance()
-  {
-
-    if(is_null(self::$_instance)) {
-      self::$_instance = new Router();
-    }
-
-    return self::$_instance;
-  }
 
   /**
    * Regex Slashes - Variables
@@ -98,24 +74,6 @@ abstract class Route
     return $this->route;
   }
 
-
-  /**
-   * Set Config URL
-   * @param type string HTTP HOST
-   */
-  public function setConfig(string $config)
-  {
-      $this->config = $config;
-  }
-
-  /**
-  * Get Config URL
-  * @return return string config
-  */
-  public function config()
-  {
-    return $this->config;
-  }
 
   /**
    * Set URL Params

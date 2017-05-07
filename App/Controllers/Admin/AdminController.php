@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use Core\Controllers\Controller;
+use Core\Controller\Controller;
 
 /**
  * Admin Controller
@@ -38,11 +38,6 @@ class AdminController extends Controller
       $this->app['HTTPResponse']->redirect('/login');
 
     }
-
-    protected function after()
-    {
-    }
-
 
 
 }

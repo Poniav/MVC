@@ -3,7 +3,7 @@
 namespace Core;
 
 use \Exception;
-use Core\Provider\ApplicationProvider;
+use Core\Domain\ArrayApp;
 use Core\Router\Router;
 use Core\Auth\Auth;
 use Core\View\View;
@@ -13,7 +13,7 @@ use Core\HTTP\HTTPResponse;
 /**
  * Class Application
  */
-class Application extends ApplicationProvider
+class Application extends ArrayApp
 {
 
   /**
@@ -23,7 +23,7 @@ class Application extends ApplicationProvider
 
   public function __construct()
   {
-     $this->app['route'] = Router::getInstance();
+     $this->app['route'] = new Router($this);
      $this->app['HTTPRequest'] = new HTTPRequest($this);
      $this->app['HTTPResponse'] = new HTTPResponse($this);
      $this->app['auth'] = new Auth($this);
@@ -163,13 +163,13 @@ class Application extends ApplicationProvider
 
     $this->app['route']->setURL($this->app['HTTPRequest']->requestURI());
 
-    if($this->app['route']->match($this->app['route']->getURL()))
-      {
-            $this->app['route']->setMatch($this->app['route']->getURL());
-            return true;
-      } else {
-            return false;
-      }
+    if(!$this->app['route']->match($this->app['route']->getURL()))
+    {
+      return false;
+    }
+
+    $this->app['route']->setMatch($this->app['route']->getURL());
+    return true;
 
   }
 

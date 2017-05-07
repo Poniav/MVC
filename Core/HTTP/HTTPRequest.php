@@ -4,35 +4,28 @@ namespace Core\HTTP;
 class HTTPRequest
 
 {
-  public function cookieData($key)
-  {
-    return isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
-  }
 
-  public function cookieExists($key)
-  {
-    return isset($_COOKIE[$key]);
-  }
-
-  public function getData($key)
-  {
-    return isset($_GET[$key]) ? $_GET[$key] : null;
-  }
-
-  public function getExists($key)
-  {
-    return isset($_GET[$key]);
-  }
+  /**
+   * Return method GET or POST
+   *
+   * @return return string method
+   */
 
   public function method()
   {
     return $_SERVER['REQUEST_METHOD'];
   }
 
-  // public function postData($key)
-  // {
-  //   return isset($_POST[$key]) ? $_POST[$key] : null;
-  // }
+  /**
+   * Return boolean methodPost true
+   *
+   * @return return boolean true false
+   */
+
+  public function methodPost()
+  {
+    return ($_SERVER['REQUEST_METHOD'] == 'POST') ? true : false;
+  }
 
   public function postData($key)
   {
@@ -48,6 +41,12 @@ class HTTPRequest
   {
     return isset($_POST[$key]);
   }
+
+  /**
+   * Get requestURI
+   *
+   * @return return string
+   */
 
   public function requestURI()
   {

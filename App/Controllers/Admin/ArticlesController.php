@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use Core\Controllers\Controller;
+use Core\Controller\Controller;
 use App\PDO\BDD;
 use App\PDO\ArticlePDO;
 use App\Models\Article;
@@ -32,7 +32,7 @@ class ArticlesController extends Controller
     {
 
       $articlePDO = new ArticlePDO(new BDD);
-      $articles = $articlePDO->getList();
+      $articles = $articlePDO->getArticles();
 
       return $this->app['view']->render('Admin/articles.php', [
               'auth' => $this->app['auth'],
@@ -53,9 +53,13 @@ class ArticlesController extends Controller
       $articlePDO->delete($article);
 
       $comments = $commentPDO->getByArticle($id);
+
       if($comments)
       {
-        $commentPDO->delete($comments);
+        foreach ($comments as $comment)
+        {
+          $commentPDO->delete($comment);
+        }
       }
 
       $this->app['HTTPResponse']->addFlash('flash-success','L\'article et les commentaires ont bien été supprimés');
@@ -78,7 +82,6 @@ class ArticlesController extends Controller
           $articlePDO = new ArticlePDO(new BDD);
           $article = new Article($this->app['HTTPRequest']->allData());
           $articlePDO->add($article);
-          // var_dump($this->app['HTTPRequest']->allData());
 
           $this->app['HTTPResponse']->addFlash('flash-success','L\'article a bien été ajouté');
           $this->app['HTTPResponse']->redirect('/admin/articles');
@@ -124,12 +127,6 @@ class ArticlesController extends Controller
               'article' => $article
       ]);
     }
-
-
-    protected function after()
-    {
-    }
-
 
 
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Core\Provider;
+namespace Core\Domain;
 
 /**
-* Application Provider
+* Application ArrayApp
  */
-abstract class ApplicationProvider implements \ArrayAccess
+abstract class ArrayApp implements \ArrayAccess
 {
 
   protected $app;

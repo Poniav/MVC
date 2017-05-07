@@ -13,6 +13,12 @@ use PDO;
 class CommentPDO extends Manager
 {
 
+  /**
+   * Add comment into BDD
+   *
+   * @param type class Comment object
+   */
+
  public function add(Comment $comments)
  {
    $query = $this->db->pdo->prepare('INSERT INTO comments(idnews, idparent, niveau, moderate, content, membre, addDate) VALUES (:idnews, :idparent, :niveau, :moderate, :content, :membre, NOW())');
@@ -26,34 +32,39 @@ class CommentPDO extends Manager
    $query->execute();
  }
 
- public function count(int $idNews)
- {
-   $query = $this->db->pdo->prepare('SELECT COUNT(*) FROM comments WHERE idnews = :idnews');
-   $query->execute(['idnews' => $idNews]);
-   $data = $query->fetchColumn();
+ /**
+  * Get all comments from $id Article
+  *
+  * @param type int $idNews
+  * @return return type
+  */
 
-   return $data;
- }
+ public function getByArticle(int $idNews)
+  {
+    $comments = [];
 
- public function getAll(int $idNews)
- {
-   $comments = [];
+    $query = $this->db->pdo->prepare('SELECT * FROM comments WHERE idNews = :idNews');
+    $query->execute(['idNews' => $idNews]);
 
-   $query = $this->db->pdo->prepare('SELECT id, idnews, idparent, niveau, moderate, content, membre, addDate FROM comments WHERE idnews = :idnews');
-   $query->execute(['idnews' => $idNews]);
+    while ($donnees = $query->fetch(PDO::FETCH_ASSOC))
+    {
+      $comments[] = new Comment($donnees);
+    }
 
-   while ($donnees = $query->fetch(PDO::FETCH_ASSOC))
-   {
-     $comments[] = new Comment($donnees);
-   }
+    return $comments;
+  }
 
-   return $comments;
- }
-
+ /**
+  * Get All comments with children in Single Article
+  *
+  * @param type int $idNews ( id Article )
+  * @return type array Comment object
+  */
 
  public function getAllComments(int $idNews)
  {
-   $comments = [];
+
+   $commentaires = [];
 
    $query = $this->db->pdo->prepare('SELECT id, idnews, idparent, niveau, moderate, content, membre, addDate FROM comments WHERE idnews = :idnews');
    $query->execute(['idnews' => $idNews]);
@@ -77,6 +88,11 @@ class CommentPDO extends Manager
   return $commentaires;
  }
 
+ /**
+  * Get unique comment by integer $id
+  *
+  * @return class Comment object
+  */
 
  public function getId(int $id)
  {
@@ -88,18 +104,13 @@ class CommentPDO extends Manager
    return new Comment($donnees);
  }
 
- public function getByArticle(int $idNews)
- {
-   $query = $this->db->pdo->prepare('SELECT * FROM comments WHERE idNews =' . $idNews);
-   $query->execute(['idNews' => $idNews]);
+ /**
+  * Get Comments list
+  *
+  * @param type array Comment object
+  */
 
-   $data = $query->fetchAll(PDO::FETCH_ASSOC);
-
-   var_dump(new Comment($data));
-  //  return $commentaires;
- }
-
- public function getList()
+ public function getComments()
  {
    $comments = [];
 
@@ -113,11 +124,22 @@ class CommentPDO extends Manager
    return $comments;
  }
 
+/**
+ * Delete comment into BDD
+ *
+ * @param type class Comment object
+ */
 
- public function delete(Comment $comments)
+ public function delete(Comment $comment)
  {
-   $this->db->pdo->exec('DELETE FROM comments WHERE idnews = '. $comments->idNews());
+   $this->db->pdo->exec('DELETE FROM comments WHERE idnews = '. $comment->idNews());
  }
+
+ /**
+  * Update comment into BDD
+  *
+  * @param type class Comment object
+  */
 
  public function update(Comment $comment)
  {

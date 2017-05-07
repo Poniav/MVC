@@ -17,16 +17,33 @@ use \DateTime;
    private $idCom;
    private $content;
 
+   /**
+    * int $id alert comment
+    *
+    * @param type int $id
+    */
+
    public function setId(int $id)
    {
      $this->id = $id;
    }
+
+   /**
+    * Set int $id comment alert
+    *
+    * @param type int $id commentaire
+    */
 
    public function setIdCom(int $idCom)
    {
      $this->idCom = $idCom;
    }
 
+   /**
+    * Set Reason Alert string $content
+    *
+    * @param type string $content
+    */
    public function setContent(string $content)
    {
      $this->content = $content;

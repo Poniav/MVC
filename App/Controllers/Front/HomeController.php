@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Front;
 
-use Core\Controllers\Controller;
+use Core\Controller\Controller;
 use App\PDO\ArticlePDO;
 use App\PDO\BDD;
 
@@ -16,23 +16,17 @@ class HomeController extends Controller
     {
 
       $articlePDO = new ArticlePDO(new BDD);
-      $articles = $articlePDO->getList();
+      $articles = $articlePDO->getArticles();
+
+      $title = 'Jean Forteroche | Acteur et écrivain';
+      $description = 'Blog de Jean Forteroche qui est acteur et écrivain. Romancier en préparation de son prochain livre sur L\'Alaska';
 
       return $this->app['view']->render('Front/home.php', [
-        'articles'    => $articles
+        'articles'    => $articles,
+        'title' => $title,
+        'description' => $description
       ]);
 
     }
-
-    public function before()
-    {
-
-    }
-
-    public function after()
-    {
-
-    }
-
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use Core\Controllers\Controller;
+use Core\Controller\Controller;
 use App\PDO\BDD;
 use App\PDO\AlertPDO;
 use App\Models\Alert;
@@ -30,7 +30,7 @@ class AlertsController extends Controller
     {
 
       $alertPDO = new AlertPDO(new BDD);
-      $alerts = $alertPDO->getList();
+      $alerts = $alertPDO->getAlerts();
 
       return $this->app['view']->render('Admin/alerts.php', [
               'auth' => $this->app['auth'],
@@ -57,8 +57,8 @@ class AlertsController extends Controller
     {
 
       $alertPDO = new AlertPDO(new BDD);
-      $alerts = $alertPDO->getList();
-      
+      $alerts = $alertPDO->getAlerts();
+
       foreach ($alerts as $alert) {
         $alertPDO->delete($alert);
       }
@@ -67,12 +67,6 @@ class AlertsController extends Controller
       $this->app['HTTPResponse']->redirect('/admin/alerts');
 
     }
-
-
-    protected function after()
-    {
-    }
-
 
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use Core\Controllers\Controller;
+use Core\Controller\Controller;
 use App\PDO\BDD;
 use App\PDO\CommentPDO;
 
@@ -29,13 +29,14 @@ class CommentsController extends Controller
     {
 
       $commentPDO = new CommentPDO(new BDD);
-      $comments = $commentPDO->getList();
+      $comments = $commentPDO->getComments();
 
       return $this->app['view']->render('Admin/comments.php', [
               'auth' => $this->app['auth'],
               'comments' => $comments
       ]);
     }
+
 
     public function moderateAction()
     {
@@ -58,23 +59,6 @@ class CommentsController extends Controller
       $commentPDO->update($comment);
       $this->app['HTTPResponse']->redirect('/admin/comments');
 
-    }
-
-    public function pagesAction()
-    {
-
-      $commentPDO = new CommentPDO(new BDD);
-      $comments = $commentPDO->getList();
-
-      return $this->app['view']->render('Admin/comments.php', [
-              'auth' => $this->app['auth'],
-              'comments' => $comments
-      ]);
-    }
-
-
-    protected function after()
-    {
     }
 
 

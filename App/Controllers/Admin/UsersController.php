@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use Core\Controllers\Controller;
+use Core\Controller\Controller;
 use App\PDO\UserPDO;
 use App\PDO\BDD;
 use Core\Form\Form;
@@ -157,12 +157,6 @@ class UsersController extends Controller
       ]);
 
     }
-
-
-    protected function after()
-    {
-    }
-
 
 
 }

@@ -1,7 +1,7 @@
 <section class="panel panel-default" id="comment-<?php echo $comment->id(); ?>">
   <div class="panel-body">
     <p><strong><?php echo htmlspecialchars($comment->membre()); ?></strong></p>
-    <?php if($comment->moderate() == 0) : ?>
+    <?php if(!$comment->moderate()) : ?>
       <p><?php echo $comment->content(); ?></p>
       <?php else : ?>
         <div class="alert alert-warning alert-dismissable">
@@ -11,7 +11,6 @@
     <a class="btn btn-default" href="/alert/<?php echo $comment->id(); ?>" role="button">Signaler</a>
     <?php if($comment->niveau() <= 2) : ?>
         <a class="btn btn-primary reply" data-id="<?php echo $comment->id(); ?>" role="button">Répondre</a>
-      <?php else: ?>
     <?php endif; ?>
   </div>
 </section>

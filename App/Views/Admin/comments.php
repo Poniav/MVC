@@ -46,7 +46,6 @@
                         <td><span class="badge badge-default">Non</span></td>
                         <?php else : ?>
                           <td><span class="badge">Oui</span></td>
-
                       <?php endif; ?>
                       <td>
                         <div class="btn-group dropdown">
@@ -68,6 +67,23 @@
               </table>
         </div>
     </section>
+      <?php if(isset($pages)) : ?>
+        <div class="col-md-12 ">
+          <ul class="pagination">
+            <?php if($pages) : ?>
+              <li><a href="#">PREC</a></li>
+            <?php endif; ?>
+              <li><a href="/admin/comments">1</a></li>
+            <?php for ($i=2; $i < $pages + 1 ; $i++) : ?>
+              <li><a href="/admin/comments/<?php echo $i; ?>"><?php echo $i; ?></a></li>
+            <?php endfor; ?>
+            <!-- <li class="active"><a href="#">2</a></li>
+            <li><a href="#">4</a></li>
+            <li class="disabled"><a href="#">5</a></li> -->
+            <li><a href="#">SUIV</a></li>
+          </ul>
+        </div>
+      <?php endif; ?>
   </div>
   </div>
   <!-- Modal -->
@@ -90,6 +106,7 @@
     </div>
   </div>
 </div>
+
 <script type="text/javascript">
 
       function getData(obj){

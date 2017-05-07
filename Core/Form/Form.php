@@ -9,10 +9,23 @@ namespace Core\Form;
 class Form
 {
 
+  /**
+   * Valid not empty Post
+   *
+   * @return return boolean true false
+   */
+
   public function isValid()
   {
-    if(!empty($_POST)) { return true; }
+    return !empty($_POST) ? true : false;
   }
+
+  /**
+   * Get Value from Post Form
+   *
+   * @param type var string $value
+   * @return return condition post $value
+   */
 
   public function getValue(string $value)
   {

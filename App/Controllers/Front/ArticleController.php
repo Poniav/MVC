@@ -8,7 +8,7 @@ use App\PDO\ArticlePDO;
 use App\PDO\CommentPDO;
 use App\PDO\BDD;
 use Core\Form\Form;
-use Core\Controllers\Controller;
+use Core\Controller\Controller;
 use Exception;
 
 /**
@@ -27,15 +27,15 @@ class ArticleController extends Controller
 
       $id = intval($this->app['route']->getParams()['id']);
 
-      $articles = $this->getArticles($id);
-      $comments = $this->getComments($id);
+      $articles = $this->getArticle($id);
       $commentPDO = new CommentPDO(new BDD);
+      $comments = $commentPDO->getAllComments($id);
 
       $niveau = 0;
 
-      $form = new Form();
+      $form = new Form;
 
-      if($this->app['HTTPRequest']->method() == 'POST' && $form->isValid())
+      if($this->app['HTTPRequest']->methodPost() && $form->isValid())
       {
 
         $idParent = $this->app['HTTPRequest']->postData('idparent');
@@ -44,7 +44,7 @@ class ArticleController extends Controller
 
           $commentId = $commentPDO->getId($idParent);
 
-          if($commentId == false){
+          if(!$commentId){
             throw new Exception("Le commentaire n'existe pas !");
           }
 
@@ -64,6 +64,8 @@ class ArticleController extends Controller
 
       return $this->app['view']->render('Front/article.php', [
         'articles'    => $articles,
+        'title' => $articles->metaTitle(),
+        'description' => $articles->metaDescription(),
         'comments'    => $comments,
         'auth' => $this->app['auth']
       ]);
@@ -76,61 +78,13 @@ class ArticleController extends Controller
      * @return return array articles
      */
 
-    private function getArticles(int $id)
+    private function getArticle(int $id)
     {
 
       $articlePDO = new ArticlePDO(new BDD);
       $articles = $articlePDO->get($id);
 
-      if(is_bool($articles))
-      {
-        $this->app['HTTPResponse']->addHeader('HTTP/1.0 404 Not Found');
-        $this->app['HTTPResponse']->redirect('/404');
-      }
-
       return $articles;
-    }
-
-    /**
-     * Get comments from article
-     *
-     * @param type int id article
-     * @return return array comments
-     */
-
-    private function getComments(int $id)
-    {
-
-      $commentPDO = new CommentPDO(new BDD);
-      if(!$commentPDO->count($id))
-      {
-        return false;
-      }
-
-      $comments = $commentPDO->getAllComments($id);
-      return $comments;
-
-    }
-
-    /**
-     * Set Title for Article
-     *
-     * @return return string title for Article
-     */
-
-    private function metaData()
-    {
-
-    }
-
-    protected function before()
-    {
-
-    }
-
-    protected function after()
-    {
-
     }
 
 }
