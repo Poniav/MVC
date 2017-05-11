@@ -14,7 +14,7 @@
 </head>
 <body>
 
-  <header class="header">
+  <header class="header text-center">
     <div class="container">
         <h1><a href="/">Jean Forteroche</a></h1>
         <h2>Blog</h2>

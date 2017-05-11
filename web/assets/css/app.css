@@ -3,10 +3,12 @@ body {
 }
 
 header.header {
-  /*background-color: #272727;*/
   background: url(/assets/img/bg.jpg) center 60%;
   color: #fff;
   padding-bottom: 15px;
+}
+header.header h1 {
+  color: #fff!important;
 }
 
 header h1 {
