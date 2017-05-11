@@ -12,4 +12,15 @@ jQuery(document).ready(function($){
         $comment.after($form);
     })
 
+
 });
+
+
+var x = location.hash;
+
+if(x !== 'undefined') {
+  $(x).css("background-color", "#e3ed9d80");
+  setTimeout(function(){
+    $(x).css("background", "white");
+  }, 4000);
+}

@@ -34,6 +34,10 @@ header h2 {
   margin-top: 20px;
 }
 
+.home, .error {
+  margin-top: 15px;
+}
+
 /* Admin */
 
 .navbar {

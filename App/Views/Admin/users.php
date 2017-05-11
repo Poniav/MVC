@@ -61,16 +61,12 @@
                       <td><?php echo $user->addDate()->format('d/m/Y à H:i:s'); ?></td>
                       <td>
                         <div class="btn-group">
-                          <button type="button" class="btn btn-danger">Action</button>
-                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="/admin/user/<?php echo $user->id(); ?>/del">Supprimer</a></li>
-                            <li><a href="/admin/user/<?php echo $user->id(); ?>/edit">Modifier</a></li>
-                          </ul>
-                        </div>
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="/admin/user/<?php echo $user->id(); ?>/del">Supprimer</a></li>
+                          <li><a href="/admin/user/<?php echo $user->id(); ?>/edit">Modifier</a></li>
+                        </ul>
+                      </div>
                       </td>
                   </tr>
                   <?php endforeach; ?>

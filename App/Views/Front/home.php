@@ -6,7 +6,7 @@
         <?php foreach ($articles as $article) : ?>
           <article class="well">
             <h1><a href="/article/<?php echo $article->id(); ?>"><?php echo $article->title(); ?></a></h1>
-            <p><?php echo $article->content(); ?></p>
+            <p><?php echo $article->resume(); ?></p>
             <footer>
               <a href="/article/<?php echo $article->id(); ?>">Voir la suite</a>
             </footer>

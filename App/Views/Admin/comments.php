@@ -21,6 +21,7 @@
               <h3 class="panel-title">Commentaires</h3>
             </div>
         <div class="well">
+          <?php if(!empty($comments)) : ?>
           <table class="table">
                 <thead>
                   <tr>
@@ -34,9 +35,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php if(isset($comments)) : ?>
                   <?php foreach($comments as $comment) : ?>
-                    <tr>
+                    <tr id="<?php echo $comment->id(); ?>">
                       <td><?php echo $comment->id(); ?></td>
                       <td><a href="/admin/article/<?php echo $comment->idNews(); ?>/edit"><?php echo $comment->idNews(); ?></a></td>
                       <td><?php echo htmlspecialchars(substr($comment->content(), 0, 45)) . '...'; ?></td>
@@ -48,42 +48,25 @@
                           <td><span class="badge">Oui</span></td>
                       <?php endif; ?>
                       <td>
-                        <div class="btn-group dropdown">
-                          <button type="button" class="btn btn-danger">Action</button>
-                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                          </button>
-                              <ul class="dropdown-menu" role="menu">
-                                <li><a href="/admin/comment/<?php echo $comment->id(); ?>/mod">Modérer</a></li>
-                                <li><a href="#myModal" data-toggle="modal" data-link="/admin/comment/<?php echo $comment->id(); ?>/mod" data-id="<?php echo $comment->id(); ?>" data-date="<?php echo $comment->addDate()->format('d/m/Y à H:i:s'); ?>" data-cont="<?php echo $comment->content(); ?>" data-auteur="<?php echo $comment->membre(); ?>" onclick="getData(this)">Voir le commentaire</a></li>
-                              </ul>
-                        </div>
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="/admin/comment/<?php echo $comment->id(); ?>/mod">Modérer</a></li>
+                          <li><a href="#myModal" data-toggle="modal" data-link="/admin/comment/<?php echo $comment->id(); ?>/mod" data-id="<?php echo $comment->id(); ?>" data-date="<?php echo $comment->addDate()->format('d/m/Y à H:i:s'); ?>" data-cont="<?php echo $comment->content(); ?>" data-auteur="<?php echo $comment->membre(); ?>" onclick="getData(this)">Voir le commentaire</a></li>
+                        </ul>
+                      </div>
                       </td>
                   </tr>
                   <?php endforeach; ?>
-                <?php endif; ?>
                 </tbody>
               </table>
+            <?php else : ?>
+              <div class="alert alert-info" role="alert">
+                <p>Vous n'avez pas encore de commentaires sur votre blog.</p>
+              </div>
+            <?php endif; ?>
         </div>
     </section>
-      <?php if(isset($pages)) : ?>
-        <div class="col-md-12 ">
-          <ul class="pagination">
-            <?php if($pages) : ?>
-              <li><a href="#">PREC</a></li>
-            <?php endif; ?>
-              <li><a href="/admin/comments">1</a></li>
-            <?php for ($i=2; $i < $pages + 1 ; $i++) : ?>
-              <li><a href="/admin/comments/<?php echo $i; ?>"><?php echo $i; ?></a></li>
-            <?php endfor; ?>
-            <!-- <li class="active"><a href="#">2</a></li>
-            <li><a href="#">4</a></li>
-            <li class="disabled"><a href="#">5</a></li> -->
-            <li><a href="#">SUIV</a></li>
-          </ul>
-        </div>
-      <?php endif; ?>
   </div>
   </div>
   <!-- Modal -->

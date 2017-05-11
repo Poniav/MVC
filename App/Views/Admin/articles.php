@@ -27,6 +27,7 @@
                 <div class="clearfix"></div>
           </div>
         <div class="well">
+          <?php if(!empty($articles)) : ?>
           <table class="table">
                 <thead>
                   <tr>
@@ -44,27 +45,28 @@
                     <tr>
                       <td><?php echo $article->id(); ?></td>
                       <td><?php echo htmlspecialchars($article->title()); ?></td>
-                      <td><?php echo htmlspecialchars($article->resume()) . '...'; ?></td>
+                      <td><?php echo htmlspecialchars($article->resumeBack()) . '...'; ?></td>
                       <td><?php echo htmlspecialchars($article->auteur()); ?></td>
                       <td><?php echo $article->addDate()->format('d/m/Y à H:i:s'); ?></td>
                       <td><?php echo $article->modDate()->format('d/m/Y à H:i:s'); ?></td>
                       <td>
-                        <div class="btn-group dropdown">
-                          <button type="button" class="btn btn-danger">Action</button>
-                          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                          </button>
-                              <ul class="dropdown-menu" role="menu">
-                                <li><a href="/admin/article/<?php echo $article->id(); ?>/del">Supprimer</a></li>
-                                <li><a href="/admin/article/<?php echo $article->id(); ?>/edit">Modifier</a></li>
-                              </ul>
-                        </div>
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="/admin/article/<?php echo $article->id(); ?>/del">Supprimer</a></li>
+                          <li><a href="/admin/article/<?php echo $article->id(); ?>/edit">Modifier</a></li>
+                        </ul>
+                      </div>
                       </td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
               </table>
+            <?php else : ?>
+              <div class="alert alert-info" role="alert">
+                <p>Vous n'avez pas encore posté d'article. Vous pouvez en ajouter un en cliquant sur "Ajouter". </p>
+              </div>
+            <?php endif; ?>
         </div>
     </section>
   </div>

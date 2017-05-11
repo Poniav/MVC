@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use Core\Controller\Controller;
 use App\PDO\BDD;
 use App\PDO\AlertPDO;
+use App\PDO\CommentPDO;
 use App\Models\Alert;
 
 /**

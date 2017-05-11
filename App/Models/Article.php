@@ -79,6 +79,7 @@ class Article extends Model
   public function metaDescription() { return strip_tags(substr($this->content, 0, 180)). '...'; }
   public function content() { return $this->content; }
   public function resume() { return strip_tags(substr($this->content(), 0, 300)); }
+  public function resumeBack() { return strip_tags(substr($this->content(), 0, 100)); }
   public function auteur() { return $this->auteur; }
   public function addDate() { return $this->addDate; }
   public function modDate() { return $this->modDate; }

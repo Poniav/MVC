@@ -31,7 +31,7 @@
       </div>
     <?php endif; ?>
 
-        <div class="panel panel-danger">
+        <div class="panel panel-success">
               <div class="panel-heading">
                 <h3 class="panel-title">Ajouter un commentaire</h3>
               </div>

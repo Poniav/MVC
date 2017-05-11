@@ -17,7 +17,7 @@ class Config
     /**
      * DataBase Name
      */
-    const DBNAME = 'oc';
+    const DBNAME = 'jeanbdd';
 
     /**
      * Database Login
