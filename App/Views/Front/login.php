@@ -1,7 +1,7 @@
 <?php include_once(__DIR__.'/../Layout/header.php'); ?>
 
   <div class="container">
-    <section class="login">
+    <section class="login well">
       <h3>Identification</h3>
         <?php if($auth->hasFlash('flash-warning')) : ?>
           <div class="alert alert-warning">

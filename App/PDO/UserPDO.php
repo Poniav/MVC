@@ -99,15 +99,16 @@ class UserPDO extends Manager
 
  public function selectUser(string $username)
  {
-     $data = [];
 
      $query = $this->db->pdo->prepare('SELECT * FROM users WHERE username = :username');
      $query->execute(['username' => $username]);
 
      $data = $query->fetch(PDO::FETCH_ASSOC);
 
-     return new User($data);
-
+     if($data)
+     {
+       return new User($data);
+     }
  }
 
  /**

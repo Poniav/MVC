@@ -8,7 +8,7 @@
             <h1><a href="/article/<?php echo $article->id(); ?>"><?php echo $article->title(); ?></a></h1>
             <p><?php echo $article->resume(); ?></p>
             <footer>
-              <a href="/article/<?php echo $article->id(); ?>">Voir la suite</a>
+              <a href="/article/<?php echo $article->id(); ?>" class="btn btn-default" role="button">Voir la suite</a>
             </footer>
           </article>
         <?php endforeach; ?>

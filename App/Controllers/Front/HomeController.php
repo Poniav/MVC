@@ -24,7 +24,8 @@ class HomeController extends Controller
       return $this->app['view']->render('Front/home.php', [
         'articles'    => $articles,
         'title' => $title,
-        'description' => $description
+        'description' => $description,
+        'auth' => $this->app['auth']
       ]);
 
     }

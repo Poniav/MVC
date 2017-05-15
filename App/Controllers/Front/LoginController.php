@@ -61,13 +61,12 @@ class LoginController extends Controller
     private function validUser(string $username, string $password)
     {
         $userPDO = new UserPDO(new BDD);
+        $user = $userPDO->selectUser($username);
 
-        if(!$userPDO->selectUser($username))
+        if(!$user)
         {
           return false;
         }
-
-        $user = $userPDO->selectUser($username);
 
         if(!password_verify($password, $user->password()))
         {

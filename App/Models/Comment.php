@@ -67,8 +67,8 @@ use \DateTime;
    public function idParent() { return $this->idParent; }
    public function niveau() { return $this->niveau; }
    public function moderate() { return $this->moderate; }
-   public function content() { return $this->content; }
-   public function membre() { return $this->membre; }
+   public function content() { return strip_tags($this->content); }
+   public function membre() { return strip_tags($this->membre); }
    public function addDate() { return $this->addDate; }
 
  }

@@ -4,7 +4,7 @@
     <div class="col-md-10">
       <div class="row">
       <ol class="breadcrumb breadcrumb-arrow">
-                  <li><a href="/"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                  <li><a href="/"><i class="glyphicon glyphicon-home"></i> Accueil</a></li>
                   <li class="active"><span><?php echo htmlspecialchars($articles->title()); ?></span></li>
       </ol>
       <section class="article">
@@ -31,7 +31,7 @@
       </div>
     <?php endif; ?>
 
-        <div class="panel panel-success">
+        <div class="panel panel-success form-resp">
               <div class="panel-heading">
                 <h3 class="panel-title">Ajouter un commentaire</h3>
               </div>
@@ -45,7 +45,7 @@
                         <input type="hidden" name="idparent" value="0" id="idparent">
                         <input type="hidden" name="idNews" value="<?php echo $articles->id(); ?>" id="idNews">
                         <div class="form-group">
-                          <label>Membre</label>
+                          <label>Pseudo :</label>
                           <input type="text" class="form-control" name="membre" id="membre" placeholder="Veuillez saisir un pseudo" required>
                         </div>
                         <div class="form-group">

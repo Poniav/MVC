@@ -40,6 +40,14 @@ header h2 {
   margin-top: 15px;
 }
 
+.footer {
+  margin-top: 25px;
+}
+
+.login {
+  margin-top: 35px;
+}
+
 /* Admin */
 
 .navbar {

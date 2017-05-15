@@ -9,7 +9,7 @@
         </div>
     <?php endif; ?>
     <a class="btn btn-default" href="/alert/<?php echo $comment->id(); ?>" role="button">Signaler</a>
-    <?php if($comment->niveau() <= 2) : ?>
+    <?php if($comment->niveau() <= 3) : ?>
         <a class="btn btn-primary reply" data-id="<?php echo $comment->id(); ?>" role="button">Répondre</a>
     <?php endif; ?>
   </div>
