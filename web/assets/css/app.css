@@ -48,6 +48,11 @@ header h2 {
   margin-top: 35px;
 }
 
+.date {
+    color: #3bafda;
+    font-weight: 600;
+}
+
 /* Admin */
 
 .navbar {

@@ -3,9 +3,9 @@
 
   <div class="container">
     <section class="alerts">
-    <div class="col-md-10">
+    <div class="col-md-12">
         <div class="row">
-        <h2 class="example-title">Signaler</h2>
+        <h2 class="example-title">Signaler #<?php echo $id; ?></h2>
         <div class="modal2">
           <div class="modal-dialog2">
             <div class="modal-content">
@@ -15,7 +15,7 @@
                     <?php echo $auth->getFlash('flash-success'); ?>
                   </div>
                 <?php endif; ?>
-                <p>Vous souhaitez signaler un commentaire qui vous semble enfreindre les règles du blog.</p>
+                <p>Vous souhaitez signaler un commentaire qui vous semble enfreindre les règles de bonne conduite sur le blog.</p>
               </div>
               <form action="#" method="post">
               <div class="modal-body">

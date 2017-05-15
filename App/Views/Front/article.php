@@ -1,7 +1,7 @@
 <?php include_once(__DIR__.'/../Layout/header.php'); ?>
 
   <div class="container">
-    <div class="col-md-10">
+    <div class="col-md-12">
       <div class="row">
       <ol class="breadcrumb breadcrumb-arrow">
                   <li><a href="/"><i class="glyphicon glyphicon-home"></i> Accueil</a></li>
@@ -11,7 +11,7 @@
             <article class="well">
               <header>
                 <h1><?php echo htmlspecialchars($articles->title()); ?></h1>
-                <p>by Jean Forteroche | <?php echo $articles->addDate()->format('d/m/Y'); ?> | <?php echo $articles->addDate()->format('H:i:s'); ?></p>
+                <p class="date">by Jean Forteroche | <?php echo $articles->addDate()->format('d/m/Y'); ?> | <?php echo $articles->addDate()->format('H:i:s'); ?></p>
               </header>
               <p><?php echo $articles->content(); ?></p>
             </article>
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-12">
     <h3>Commentaires</h1>
     <?php if($comments) : ?>
       <?php foreach ($comments as $comment): ?>
