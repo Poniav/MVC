@@ -33,6 +33,17 @@ class Auth
   }
 
   /**
+   * Navbar URI request URI exist
+   *
+   * @return string class active
+   */
+
+  public function navbarUrl(string $attr)
+  {
+    return ($_SERVER['REQUEST_URI'] == $attr) ? 'class="active"' : null;
+  }
+
+  /**
    * String Attr is equal to Request URI
    *
    * @param string attr URL

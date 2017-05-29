@@ -30,12 +30,15 @@ class AlertsController extends Controller
     public function indexAction()
     {
 
+      $title = "Les alertes | Jean Forteroche";
+
       $alertPDO = new AlertPDO(new BDD);
       $alerts = $alertPDO->getAlerts();
 
       return $this->app['view']->render('Admin/alerts.php', [
               'auth' => $this->app['auth'],
-              'alerts' => $alerts
+              'alerts' => $alerts,
+              'title' => $title
       ]);
     }
 

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title><?php isset($title) ? $title : null ?></title>
+    <title><?php echo isset($title) ? $title : null; ?></title>
     <meta name="description" content="<?php isset($title) ? $title : null ?>" />
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/bootflat.css" rel="stylesheet">

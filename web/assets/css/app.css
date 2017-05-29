@@ -2,11 +2,22 @@ body {
   background: rgb(241, 242, 246);
 }
 
-header.header {
+/*header.header {
   background: url(/assets/img/bg.jpg) center 60%;
   color: #fff;
   padding-bottom: 15px;
+  margin-top: -50px;
+}*/
+
+header.header {
+    background: url(/assets/img/bg.jpg) no-repeat;
+    color: #fff;
+    margin-top: -50px;
+    padding-top: 25px;
+    background-size: cover;
+    padding-bottom: 25px;
 }
+
 header.header h1 {
   color: #fff!important;
 }
@@ -51,6 +62,78 @@ header h2 {
 .date {
     color: #3bafda;
     font-weight: 600;
+}
+
+/* Navbar Front */
+
+@media all and (min-width: 768px) {
+
+  section.frontnav .navbar {
+    margin-bottom: 0px;
+  }
+
+  section.frontnav .navbar-default {
+      background: transparent;
+      border: none;
+  }
+
+  section.frontnav .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: transparent;
+  }
+
+  section.frontnav .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+      color: white;
+      background-color: #3bafda;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+  }
+
+  section.frontnav .navbar-default .navbar-text, .navbar-default .navbar-nav > li > a {
+      color: #aab2bd;
+  }
+
+}
+
+@media all and (max-width: 768px) {
+  section.frontnav .nav>li {
+    float: left;
+  }
+
+  section.frontnav .navbar {
+    margin-bottom: 0px;
+  }
+
+  section.frontnav .navbar-default {
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  section.frontnav .navbar-nav {
+    margin: 0px -15px;
+  }
+  section.frontnav .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+      color: white;
+      background-color: #3bafda;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+  }
+
+  section.frontnav .navbar-default .navbar-text, .navbar-default .navbar-nav > li > a {
+      color: #aab2bd;
+  }
+
+  section.frontnav .navbar-default .navbar-text, .navbar-default .navbar-nav > li > a:hover {
+    background-color: transparent;
+  }
+
+  header.header {
+    background: url(/assets/img/bg.jpg) center no-repeat black;
+    color: #fff;
+    background-size: cover;
+    padding-bottom: 15px;
+    margin-top: -50px;
+    padding-top: 20px;
+  }
 }
 
 /* Admin */

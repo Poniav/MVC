@@ -25,7 +25,7 @@ class LoginController extends Controller
 
     public function indexAction()
     {
-
+      $title = "Identification Administration | Jean Forteroche";
       $form = new Form;
 
       if($this->app['HTTPRequest']->methodPost() && $form->isValid())
@@ -46,7 +46,8 @@ class LoginController extends Controller
       }
 
       return $this->app['view']->render('Front/login.php', [
-              'auth' => $this->app['auth']
+              'auth' => $this->app['auth'],
+              'title' => $title
       ]);
 
     }

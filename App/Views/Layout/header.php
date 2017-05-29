@@ -15,10 +15,24 @@
     <![endif]-->
 </head>
 <body>
-
-  <header class="header text-center">
-    <div class="container">
-        <h1><a href="/">Jean Forteroche</a></h1>
-        <h2>Blog</h2>
-    </div>
-  </header>
+  <section class="frontnav">
+      <nav class="navbar navbar-default">
+          <div class="container">
+            <div class="navbar-header">
+            </div>
+            <div id="navbar">
+              <ul class="nav navbar-nav">
+                <li <?php echo $auth->navbarUrl('/'); ?>><a href="/">Home</a></li>
+                <li <?php echo $auth->navbarUrl('/auteur'); ?>><a href="/auteur">Auteur</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+    </section>
+    <div class="clearfix"></div>
+    <header class="header text-center">
+      <div class="container">
+          <h1><a href="/">Jean Forteroche</a></h1>
+          <h2>Blog</h2>
+      </div>
+    </header>

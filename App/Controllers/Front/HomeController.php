@@ -30,4 +30,18 @@ class HomeController extends Controller
 
     }
 
+    public function auteurAction()
+    {
+
+      $title = 'Auteur | Jean Forteroche';
+      $description = 'Fiche profil de l\'Auteur Jean Forteroche qui est acteur et écrivain. Découvrez sa biographie avec l\'ensemble de ses oeuvres';
+
+      return $this->app['view']->render('Front/auteur.php', [
+        'title' => $title,
+        'description' => $description,
+        'auth' => $this->app['auth']
+      ]);
+
+    }
+
 }

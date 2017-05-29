@@ -30,13 +30,15 @@ class ArticlesController extends Controller
 
     public function indexAction()
     {
+      $title = "Articles | Jean Forteroche";
 
       $articlePDO = new ArticlePDO(new BDD);
       $articles = $articlePDO->getArticles();
 
       return $this->app['view']->render('Admin/articles.php', [
               'auth' => $this->app['auth'],
-              'articles' => $articles
+              'articles' => $articles,
+              'title' => $title
       ]);
     }
 
@@ -70,6 +72,8 @@ class ArticlesController extends Controller
 
     public function add()
     {
+      $title = "Ajouter un article | Jean Forteroche";
+
       $form = new Form;
 
       if($this->app['HTTPRequest']->method() == 'POST' && $form->isValid())
@@ -89,13 +93,16 @@ class ArticlesController extends Controller
 
 
       return $this->app['view']->render('Admin/add/article.php', [
-              'auth' => $this->app['auth']
+              'auth' => $this->app['auth'],
+              'title' => $title
       ]);
     }
 
 
     public function edit()
     {
+      $title = "Modifier l'article | Jean Forteroche";
+
       $id = intval($this->app['route']->getParams()['id']);
 
       $articlePDO = new ArticlePDO(new BDD);
@@ -124,7 +131,8 @@ class ArticlesController extends Controller
 
       return $this->app['view']->render('Admin/edit/article.php', [
               'auth' => $this->app['auth'],
-              'article' => $article
+              'article' => $article,
+              'title' => $title
       ]);
     }
 

@@ -25,8 +25,11 @@ class AdminController extends Controller
     public function indexAction()
     {
 
+      $title = "Administration | Jean Forteroche";
+
       return $this->app['view']->render('Admin/home.php', [
-              'auth' => $this->app['auth']
+              'auth' => $this->app['auth'],
+              'title' => $title
       ]);
     }
 

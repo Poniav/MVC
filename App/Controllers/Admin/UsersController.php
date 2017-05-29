@@ -34,13 +34,15 @@ class UsersController extends Controller
 
     public function indexAction()
     {
+      $title = "Utilisateurs | Jean Forteroche";
 
       $userPDO = new UserPDO(new BDD);
       $users = $userPDO->getList();
 
       return $this->app['view']->render('Admin/users.php', [
               'auth' => $this->app['auth'],
-              'users' => $users
+              'users' => $users,
+              'title' => $title
       ]);
     }
 
@@ -73,6 +75,8 @@ class UsersController extends Controller
     public function addAction()
     {
 
+      $title = "Ajouter un utilisateur | Jean Forteroche";
+
       $userPDO = new UserPDO(new BDD);
       $form = new Form;
       $user = null;
@@ -99,13 +103,15 @@ class UsersController extends Controller
       return $this->app['view']->render('Admin/add/user.php', [
               'auth' => $this->app['auth'],
               'user' => $user,
-              'form' => $form
+              'form' => $form,
+              'title' => $title
       ]);
 
     }
 
     public function editAction()
     {
+      $title = "Modifier l'utilisateur | Jean Forteroche";
 
       $id = intval($this->app['route']->getParams()['id']);
       $form = new Form;
@@ -153,7 +159,8 @@ class UsersController extends Controller
       return $this->app['view']->render('Admin/edit/user.php', [
               'auth' => $this->app['auth'],
               'user' => $user,
-              'form' => $form
+              'form' => $form,
+              'title' => $title
       ]);
 
     }

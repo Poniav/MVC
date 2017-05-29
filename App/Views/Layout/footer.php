@@ -20,7 +20,8 @@
 
 
     <script src="/assets/js/jquery-1.10.1.min.js"></script>
-    <script src="/assets/js/boostrap.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/app.js"></script>
 </body>
 </html>

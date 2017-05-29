@@ -28,12 +28,15 @@ class CommentsController extends Controller
     public function indexAction()
     {
 
+      $title = "Commentaires | Jean Forteroche";
+
       $commentPDO = new CommentPDO(new BDD);
       $comments = $commentPDO->getComments();
 
       return $this->app['view']->render('Admin/comments.php', [
               'auth' => $this->app['auth'],
-              'comments' => $comments
+              'comments' => $comments,
+              'title' => $title
       ]);
     }
 

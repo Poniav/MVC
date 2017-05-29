@@ -5,6 +5,7 @@ $app['route']->add('/', ['controller' => 'HomeController', 'action' => 'index'])
 $app['route']->add('/articles/{id:\d+}', ['controller' => 'HomeController', 'articles' => 'index']);
 $app['route']->add('/article/{id:\d+}', ['controller' => 'ArticleController', 'action' => 'article']);
 $app['route']->add('/alert/{id:\d+}', ['controller' => 'AlertController', 'action' => 'index']);
+$app['route']->add('/auteur', ['controller' => 'HomeController', 'action' => 'auteur']);
 $app['route']->add('/login', ['controller' => 'LoginController', 'action' => 'index']);
 
 // Route Admin
