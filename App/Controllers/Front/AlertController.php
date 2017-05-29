@@ -20,6 +20,14 @@ class AlertController extends Controller
       $form = new Form;
 
       if($this->app['HTTPRequest']->methodPost() && $form->isValid()){
+
+        extract($this->app['HTTPRequest']->allData());
+
+        if(!$content){
+          $this->app['HTTPResponse']->addFlash('flash-error', 'Vous devez remplir le champs.');
+          $this->app['HTTPResponse']->redirect('/alert/'.$id);
+        }
+
           $alert = new Alert($this->app['HTTPRequest']->allData());
           $alertPDO = new AlertPDO(new BDD);
           $alertPDO->add($alert);

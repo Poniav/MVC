@@ -38,6 +38,14 @@ class ArticleController extends Controller
       if($this->app['HTTPRequest']->methodPost() && $form->isValid())
       {
 
+        extract($this->app['HTTPRequest']->allData());
+
+        if(!$membre || !$content)
+        {
+          $this->app['HTTPResponse']->addFlash('flash-error', 'Vous devez remplir tous les champs.');
+          $this->app['HTTPResponse']->redirect('/article/'.$id);
+        }
+
         $idParent = $this->app['HTTPRequest']->postData('idparent');
 
         if($idParent != 0){

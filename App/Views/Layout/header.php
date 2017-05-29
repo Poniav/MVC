@@ -23,7 +23,7 @@
             <div id="navbar">
               <ul class="nav navbar-nav">
                 <li <?php echo $auth->navbarUrl('/'); ?>><a href="/">Home</a></li>
-                <li <?php echo $auth->navbarUrl('/auteur'); ?>><a href="/auteur">Auteur</a></li>
+                <li <?php echo $auth->navbarUrl('/auteur'); ?>><a href="/auteur">A propos de l'Auteur</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>

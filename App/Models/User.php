@@ -30,6 +30,11 @@ class User extends Model
   public function setUsername(string $username)
   {
 
+    if(empty($username))
+    {
+      $this->erreurs['username'] = "Vous devez remplir le champs utilisateur";
+    }
+
     if(!empty($username) && strlen($username) < 3 || strlen($username) > 22)
     {
       $this->erreurs['username'] = "Votre nom d'utilisateur doit faire entre 3 et 22 caractères.";
@@ -41,6 +46,11 @@ class User extends Model
 
   public function setPassword(string $password)
   {
+
+    if(empty($password))
+    {
+      $this->erreurs['password'] = "Vous devez saisir un mot de passe.";
+    }
 
     if(!empty($password) && strlen($password) < 6)
     {
@@ -74,6 +84,11 @@ class User extends Model
 
   public function setEmail(string $email)
   {
+
+    if(empty($email))
+    {
+      $this->erreurs['email'] = "Vous devez saisir un email.";
+    }
 
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
       $this->erreurs['email'] = "Veuillez saisir une adresse email valide.";

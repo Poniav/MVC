@@ -41,6 +41,11 @@
                     <?php echo $auth->getFlash('flash-success'); ?>
                   </div>
                 <?php endif; ?>
+                <?php if($auth->hasFlash('flash-error')) : ?>
+                  <div class="alert alert-danger">
+                    <?php echo $auth->getFlash('flash-error'); ?>
+                  </div>
+                <?php endif; ?>
                 <form action="#" method="post" id="form-comment">
                         <input type="hidden" name="idparent" value="0" id="idparent">
                         <input type="hidden" name="idNews" value="<?php echo $articles->id(); ?>" id="idNews">

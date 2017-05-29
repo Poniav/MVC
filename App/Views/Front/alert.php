@@ -15,6 +15,11 @@
                     <?php echo $auth->getFlash('flash-success'); ?>
                   </div>
                 <?php endif; ?>
+                <?php if($auth->hasFlash('flash-error')) : ?>
+                  <div class="alert alert-danger">
+                    <?php echo $auth->getFlash('flash-error'); ?>
+                  </div>
+                <?php endif; ?>
                 <p>Vous souhaitez signaler un commentaire qui vous semble enfreindre les règles de bonne conduite sur le blog.</p>
               </div>
               <form action="#" method="post">

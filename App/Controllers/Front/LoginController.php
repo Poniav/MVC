@@ -33,6 +33,12 @@ class LoginController extends Controller
 
         extract($this->app['HTTPRequest']->allData());
 
+        if(!$username || !$password)
+        {
+          $this->app['HTTPResponse']->addFlash('flash-error', 'Vous devez remplir les champs.');
+          $this->app['HTTPResponse']->redirect('/login');
+        }
+
         if(!$this->validUser($username, $password))
         {
           $this->app['HTTPResponse']->addFlash('flash-error', 'La combinaison identifiant et mot de passe est incorrect. Veuillez réessayer.');
